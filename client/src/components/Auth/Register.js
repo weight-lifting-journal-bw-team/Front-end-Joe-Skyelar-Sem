@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
+// action creators
+import { registerUser } from "../../actions/authActions";
 
 class Register extends Component {
 	state = {
@@ -23,7 +27,7 @@ class Register extends Component {
 	registerUser = e => {
 		e.preventDefault();
 
-		// TO-DO: Register user action creator
+		this.props.registerUser(this.state.credentials);
 	};
 
 	render() {
@@ -72,4 +76,7 @@ class Register extends Component {
 	}
 }
 
-export default Register;
+export default connect(
+	null,
+	{ registerUser }
+)(Register);
