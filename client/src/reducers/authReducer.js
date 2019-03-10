@@ -7,10 +7,32 @@ import {
 	LOGIN_USER_FAILURE
 } from "../actions";
 
-const initialState = {};
+const initialState = {
+	token: localStorage.getItem("token"),
+	fetching: false,
+	errors: null
+};
 
 export default (state = initialState, action) => {
 	switch (action.type) {
+		case REGISTER_USER_START:
+			return {
+				...state,
+				fetching: true,
+				errors: null
+			};
+		case REGISTER_USER_SUCCESS:
+			return {
+				...state,
+				token: action.payload,
+				fetching: false,
+				errors: null
+			};
+		case REGISTER_USER_FAILURE:
+			return {
+				...state,
+				errors: action.payload
+			};
 		default:
 			return state;
 	}

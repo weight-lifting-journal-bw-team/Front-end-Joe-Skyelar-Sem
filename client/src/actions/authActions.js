@@ -31,6 +31,9 @@ export const registerUser = creds => dispatch => {
 			newUser
 		)
 		.then(res => {
+			// set token of new user in storage
+			localStorage.setItem("token", res.data.token);
+
 			dispatch({
 				type: REGISTER_USER_SUCCESS,
 				payload: res.data.token
