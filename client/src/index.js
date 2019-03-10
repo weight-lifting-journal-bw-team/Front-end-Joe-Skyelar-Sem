@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
 
 // Redux setup
 import { Provider } from "react-redux";
 import store from "./store";
 
+const AppWithRouter = withRouter(App);
+
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<Router>
+			<AppWithRouter />
+		</Router>
 	</Provider>,
 	document.getElementById("root")
 );

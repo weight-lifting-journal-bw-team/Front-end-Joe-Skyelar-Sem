@@ -4,6 +4,16 @@ import { connect } from "react-redux";
 // action creators
 import { registerUser } from "../../actions/authActions";
 
+// component styles
+import {
+	AuthContainer,
+	AuthWrapper,
+	AuthTitle,
+	AuthInput,
+	AuthButton,
+	AuthHelper
+} from "./AuthStyles";
+
 class Register extends Component {
 	state = {
 		credentials: {
@@ -32,46 +42,54 @@ class Register extends Component {
 
 	render() {
 		return (
-			<div>
-				<form onSubmit={this.registerUser}>
-					<input
-						type="text"
-						name="firstName"
-						value={this.state.credentials.firstName}
-						placeholder="firstname"
-						onChange={this.handleChanges}
-					/>
-					<input
-						type="text"
-						name="lastName"
-						value={this.state.credentials.lastName}
-						placeholder="lastname"
-						onChange={this.handleChanges}
-					/>
-					<input
-						type="text"
-						name="username"
-						value={this.state.credentials.username}
-						placeholder="username"
-						onChange={this.handleChanges}
-					/>
-					<input
-						type="email"
-						name="email"
-						value={this.state.credentials.email}
-						placeholder="email"
-						onChange={this.handleChanges}
-					/>
-					<input
-						type="password"
-						name="password"
-						value={this.state.credentials.password}
-						placeholder="password"
-						onChange={this.handleChanges}
-					/>
-					<button type="submit">Create an account</button>
-				</form>
-			</div>
+			<AuthContainer>
+				<AuthWrapper>
+					<AuthTitle>Create an account</AuthTitle>
+
+					<form onSubmit={this.registerUser}>
+						<AuthInput
+							type="text"
+							name="firstName"
+							value={this.state.credentials.firstName}
+							placeholder="firstname"
+							onChange={this.handleChanges}
+						/>
+						<AuthInput
+							type="text"
+							name="lastName"
+							value={this.state.credentials.lastName}
+							placeholder="lastname"
+							onChange={this.handleChanges}
+						/>
+						<AuthInput
+							type="text"
+							name="username"
+							value={this.state.credentials.username}
+							placeholder="username"
+							onChange={this.handleChanges}
+						/>
+						<AuthInput
+							type="email"
+							name="email"
+							value={this.state.credentials.email}
+							placeholder="email"
+							onChange={this.handleChanges}
+						/>
+						<AuthInput
+							type="password"
+							name="password"
+							value={this.state.credentials.password}
+							placeholder="password"
+							onChange={this.handleChanges}
+						/>
+						<AuthButton type="submit">Create an account</AuthButton>
+
+						<AuthHelper>
+							Already have an account? Sign in here
+						</AuthHelper>
+					</form>
+				</AuthWrapper>
+			</AuthContainer>
 		);
 	}
 }
