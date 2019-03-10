@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+// action creators
+import { loginUser } from "../../actions/authActions";
+
 class Login extends Component {
 	state = {
 		credentials: {
@@ -21,7 +24,7 @@ class Login extends Component {
 	loginUser = e => {
 		e.preventDefault();
 
-		// TO-DO: login user action creator
+		this.props.loginUser(this.state.credentials);
 	};
 
 	render() {
@@ -51,5 +54,5 @@ class Login extends Component {
 
 export default connect(
 	null,
-	{}
+	{ loginUser }
 )(Login);
