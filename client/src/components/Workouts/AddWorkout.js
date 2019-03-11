@@ -20,25 +20,30 @@
     // When form is submitted, the PUT request will fire
     import React, { Component } from 'react';
     import {connect} from 'react-redux';
+    import WorkoutModal from 'react-modal';  
+    import {toggleWorkoutModal} from '../../actions/workoutActions';
     
     
-    class AddWorkout extends Component {
-        componentDidUpdate() {
-            console.log(this.props.toggleWorkoutModal)
-        }
+    class AddWorkout extends Component {        
+       
       render() {
         return (
           <div>
-              {console.log(this.props.toggleWorkoutModal)}
+              {/* {console.log(this.props.toggleWorkoutModal)} */}
+              <WorkoutModal
+              isOpen={this.props.toggleModalWorkoutValue}
+              onRequestClose={this.props.toggleWorkoutModal}
+               >Hello I'm working</WorkoutModal>
+
             
           </div>
         )
       }
     }
 
-    const mapStateToProps = (state) => ({        
-        toggleWorkoutModal: state.workoutReducer.toggleWorkoutModal
+    const mapStateToProps = ({workoutReducer}) => ({        
+        toggleModalWorkoutValue: workoutReducer.toggleWorkoutModal
     })
 
-    export default connect(mapStateToProps, {})(AddWorkout);
+    export default connect(mapStateToProps, {toggleWorkoutModal})(AddWorkout);
     
