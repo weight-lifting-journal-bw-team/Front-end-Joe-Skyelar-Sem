@@ -50,7 +50,10 @@ class Register extends Component {
 				<AuthWrapper>
 					<AuthTitle>Create an account</AuthTitle>
 
-					{this.props.errors && <Errors>{this.props.errors}</Errors>}
+					{this.props.errors && (
+						<Errors>{this.props.errors.message}</Errors>
+					)}
+
 					<form onSubmit={this.registerUser}>
 						<AuthInput
 							type="text"

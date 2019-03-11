@@ -1,4 +1,5 @@
 import axios from "axios";
+import history from "../helpers/history";
 
 import {
 	REGISTER_USER_START,
@@ -16,7 +17,6 @@ export const registerUser = creds => dispatch => {
 
 	const { firstName, lastName, username, email, password } = creds;
 
-	// Create newUser object to match db schema
 	const newUser = {
 		first_name: firstName,
 		last_name: lastName,
@@ -31,18 +31,19 @@ export const registerUser = creds => dispatch => {
 			newUser
 		)
 		.then(res => {
-			// set token in storage
 			localStorage.setItem("token", res.data.token);
 
 			dispatch({
 				type: REGISTER_USER_SUCCESS,
 				payload: res.data.token
 			});
+
+			history.push("/");
 		})
 		.catch(err => {
 			dispatch({
 				type: REGISTER_USER_FAILURE,
-				payload: err.response.data.message
+				payload: err.response.data
 			});
 		});
 };
@@ -57,13 +58,14 @@ export const loginUser = creds => dispatch => {
 			creds
 		)
 		.then(res => {
-			// set token in storage
 			localStorage.setItem("token", res.data.token);
 
 			dispatch({
 				type: LOGIN_USER_SUCCESS,
 				payload: res.data.token
 			});
+
+			history.push("/");
 		})
 		.catch(err => {
 			dispatch({

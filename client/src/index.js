@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { BrowserRouter as Router, withRouter } from "react-router-dom";
+import { Router, withRouter } from "react-router-dom";
+import history from "./helpers/history";
 
 // Redux setup
 import { Provider } from "react-redux";
@@ -11,7 +12,7 @@ const AppWithRouter = withRouter(App);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Router>
+		<Router history={history}>
 			<AppWithRouter />
 		</Router>
 	</Provider>,
