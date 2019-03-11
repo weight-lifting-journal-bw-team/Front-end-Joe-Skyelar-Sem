@@ -52,7 +52,7 @@ class Register extends Component {
 		return (
 			<AuthContainer>
 				<AuthWrapper>
-					<AuthTitle>Create an account</AuthTitle>
+					<AuthTitle>Create a journal</AuthTitle>
 
 					{this.props.errors && (
 						<Errors>{this.props.errors.message}</Errors>

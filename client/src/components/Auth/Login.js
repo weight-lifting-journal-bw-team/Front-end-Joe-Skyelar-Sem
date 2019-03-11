@@ -49,7 +49,7 @@ class Login extends Component {
 		return (
 			<AuthContainer>
 				<AuthWrapper>
-					<AuthTitle>Sign in</AuthTitle>
+					<AuthTitle>Sign into journal</AuthTitle>
 
 					{this.props.errors && <Errors>{this.props.errors}</Errors>}
 					<form onSubmit={this.loginUser}>
