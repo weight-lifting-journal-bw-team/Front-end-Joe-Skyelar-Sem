@@ -7,7 +7,7 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<Navigation />
+				<Navigation history={this.props.history}/>
 				<h1>Home page</h1>
 			</div>
 		);
