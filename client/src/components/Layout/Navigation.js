@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
+
+import {toggleWorkoutModal} from '../../actions/workoutActions';
 
 import {
 	NavBarWrapper
@@ -25,7 +28,7 @@ class Navigation extends Component {
 		return (
 			<NavBarWrapper>
 				<button
-				// onClick -- this will open our modal
+				onClick={this.props.toggleWorkoutModal}
 				>Add Workout</button>	
 				<div 
 				className="dropdown"
@@ -34,7 +37,7 @@ class Navigation extends Component {
 					<img alt="profile-pic"/>
 					<h1>Welcome name</h1>
 					{this.state.dropdownActive && 
-						<div className="dropdown-content">
+						<div className="dropdown-content">						
 							<h2>Profile</h2>
 							<h2
 							onClick={this.handleLogout}
@@ -49,4 +52,5 @@ class Navigation extends Component {
 	}
 };
 
-export default Navigation;
+export default connect(null, {toggleWorkoutModal}) (Navigation);
+
