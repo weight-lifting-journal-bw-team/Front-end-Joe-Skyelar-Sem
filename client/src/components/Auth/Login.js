@@ -26,6 +26,10 @@ class Login extends Component {
 		}
 	};
 
+	componentDidMount = () => {
+		if (localStorage.getItem("token")) return this.props.history.push("/");
+	};
+
 	handleChanges = e => {
 		this.setState({
 			credentials: {
