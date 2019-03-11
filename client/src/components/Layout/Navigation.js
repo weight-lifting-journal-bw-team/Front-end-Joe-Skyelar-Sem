@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+import {
+	NavBarWrapper
+} from "./LayoutStyles"
+
 class Navigation extends Component {
 	
 	state = {
@@ -19,8 +23,10 @@ class Navigation extends Component {
 
 	render() {
 		return (
-			<div>
-				<h1>This is a navbar</h1>
+			<NavBarWrapper>
+				<button
+				// onClick -- this will open our modal
+				>Add Workout</button>	
 				<div 
 				className="dropdown"
 				onClick={this.handleDropdown}
@@ -38,7 +44,7 @@ class Navigation extends Component {
 				
 				</div>
 				
-			</div>
+			</NavBarWrapper>
 		);
 	}
 };
