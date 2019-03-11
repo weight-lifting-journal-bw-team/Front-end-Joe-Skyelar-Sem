@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 // action creators
@@ -9,10 +10,13 @@ import {
 	AuthContainer,
 	AuthWrapper,
 	AuthTitle,
+	Errors,
 	AuthInput,
 	AuthButton,
 	AuthHelper
 } from "./AuthStyles";
+
+import Loader from "../misc/Loader";
 
 class Register extends Component {
 	state = {
@@ -46,22 +50,24 @@ class Register extends Component {
 				<AuthWrapper>
 					<AuthTitle>Create an account</AuthTitle>
 
+					{this.props.errors && <Errors>{this.props.errors}</Errors>}
 					<form onSubmit={this.registerUser}>
 						<AuthInput
 							type="text"
 							name="firstName"
 							value={this.state.credentials.firstName}
-							placeholder="firstname"
+							placeholder="first name"
 							onChange={this.handleChanges}
 						/>
 						<AuthInput
 							type="text"
 							name="lastName"
 							value={this.state.credentials.lastName}
-							placeholder="lastname"
+							placeholder="last name"
 							onChange={this.handleChanges}
 						/>
 						<AuthInput
+							errors={this.props.errors}
 							type="text"
 							name="username"
 							value={this.state.credentials.username}
@@ -69,6 +75,7 @@ class Register extends Component {
 							onChange={this.handleChanges}
 						/>
 						<AuthInput
+							errors={this.props.errors}
 							type="email"
 							name="email"
 							value={this.state.credentials.email}
@@ -82,10 +89,27 @@ class Register extends Component {
 							placeholder="password"
 							onChange={this.handleChanges}
 						/>
-						<AuthButton type="submit">Create an account</AuthButton>
+
+						<AuthButton
+							type="submit"
+							disabled={
+								!this.state.credentials.firstName ||
+								!this.state.credentials.lastName ||
+								!this.state.credentials.username ||
+								!this.state.credentials.email ||
+								!this.state.credentials.password
+							}
+						>
+							{this.props.fetching ? (
+								<Loader />
+							) : (
+								"Create an account"
+							)}
+						</AuthButton>
 
 						<AuthHelper>
-							Already have an account? Sign in here
+							Already have an account?{" "}
+							<Link to="/login">Sign in here</Link>
 						</AuthHelper>
 					</form>
 				</AuthWrapper>
@@ -94,7 +118,12 @@ class Register extends Component {
 	}
 }
 
+const mapStateToProps = ({ authReducer }) => ({
+	fetching: authReducer.fetching,
+	errors: authReducer.errors
+});
+
 export default connect(
-	null,
+	mapStateToProps,
 	{ registerUser }
 )(Register);

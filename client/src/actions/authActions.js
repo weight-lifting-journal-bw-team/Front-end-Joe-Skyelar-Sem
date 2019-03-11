@@ -25,7 +25,7 @@ export const registerUser = creds => dispatch => {
 		password
 	};
 
-	axios
+	return axios
 		.post(
 			"https://weight-lifting-journal.herokuapp.com/api/auth/register",
 			newUser
@@ -51,8 +51,7 @@ export const loginUser = creds => dispatch => {
 	dispatch({
 		type: LOGIN_USER_START
 	});
-
-	axios
+	return axios
 		.post(
 			"https://weight-lifting-journal.herokuapp.com/api/auth/login",
 			creds

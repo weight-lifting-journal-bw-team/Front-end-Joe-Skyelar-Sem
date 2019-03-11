@@ -31,6 +31,7 @@ export default (state = initialState, action) => {
 		case REGISTER_USER_FAILURE:
 			return {
 				...state,
+				fetching: false,
 				errors: action.payload
 			};
 		case LOGIN_USER_START:

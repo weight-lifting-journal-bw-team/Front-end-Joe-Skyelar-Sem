@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 
+import ProtectedRoute from "./components/Auth/ProtectedRoute";
+
 // Global styles
 import { GlobalStyle } from "./components/styles/Global";
 
@@ -21,7 +23,8 @@ class App extends Component {
 				<GlobalStyle />
 
 				<Switch>
-					<Route path="/" exact component={Home} />
+					<ProtectedRoute path="/" exact component={Home} />
+
 					<Route path="/login" exact component={Login} />
 					<Route path="/register" exact component={Register} />
 					<Route component={NotFound} />

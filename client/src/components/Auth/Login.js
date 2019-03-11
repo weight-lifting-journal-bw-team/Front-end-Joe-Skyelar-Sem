@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 // action creators
@@ -9,10 +10,13 @@ import {
 	AuthContainer,
 	AuthWrapper,
 	AuthTitle,
+	Errors,
 	AuthInput,
 	AuthButton,
 	AuthHelper
 } from "./AuthStyles";
+
+import Loader from "../misc/Loader";
 
 class Login extends Component {
 	state = {
@@ -43,8 +47,10 @@ class Login extends Component {
 				<AuthWrapper>
 					<AuthTitle>Sign in</AuthTitle>
 
+					{this.props.errors && <Errors>{this.props.errors}</Errors>}
 					<form onSubmit={this.loginUser}>
 						<AuthInput
+							errors={this.props.errors}
 							type="text"
 							name="username"
 							value={this.state.credentials.username}
@@ -52,23 +58,41 @@ class Login extends Component {
 							onChange={this.handleChanges}
 						/>
 						<AuthInput
+							errors={this.props.errors}
 							type="password"
 							name="password"
 							value={this.state.credentials.password}
 							placeholder="password"
 							onChange={this.handleChanges}
 						/>
-						<AuthButton>Sign in</AuthButton>
+
+						<AuthButton
+							type="submit"
+							disabled={
+								!this.state.credentials.username ||
+								!this.state.credentials.password
+							}
+						>
+							{this.props.fetching ? <Loader /> : "Sign in"}
+						</AuthButton>
 					</form>
 
-					<AuthHelper>Dont have an account? Sign up here</AuthHelper>
+					<AuthHelper>
+						Dont have an account?{" "}
+						<Link to="/register">Sign up here</Link>
+					</AuthHelper>
 				</AuthWrapper>
 			</AuthContainer>
 		);
 	}
 }
 
+const mapStateToProps = ({ authReducer }) => ({
+	fetching: authReducer.fetching,
+	errors: authReducer.errors
+});
+
 export default connect(
-	null,
+	mapStateToProps,
 	{ loginUser }
 )(Login);
