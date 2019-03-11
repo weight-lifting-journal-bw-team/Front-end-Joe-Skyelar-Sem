@@ -7,7 +7,7 @@ import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import { GlobalStyle } from "./components/styles/Global";
 
 // Components
-import Home from "./components/Home";
+import Home from "./components/Dashboard/Home";
 
 // Auth Components
 import Register from "./components/Auth/Register";
