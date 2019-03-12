@@ -7,7 +7,7 @@ class AddWorkout extends Component {
     state = {
         workout: {
             workoutName: "",
-            workoutDate: Date.now(),
+            workoutDate: Date.now().toString(),
             workoutType: "",
             workoutSubType: "",
             workoutSets: "",
@@ -48,7 +48,13 @@ class AddWorkout extends Component {
                     onRequestClose={this.props.toggleWorkoutModal}
                 >
                     <form onSubmit={this.addExercise}>
-                        {/* <input type="file" onChange={this.handleChanges} /> */}
+						{/* <input type="file" onChange={this.handleChanges} /> */}
+						<input
+                                    name="workoutName"
+                                    value={this.state.workout.workoutName}
+                                    placeholder="workout name"
+                                    onChange={this.handleChanges}
+                                />
                         <select
                             onChange={this.handleDropDownChanges}
                             value={this.state.workout.workoutType}
