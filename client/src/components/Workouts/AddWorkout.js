@@ -29,6 +29,7 @@ class AddWorkout extends Component {
 			workoutName: "",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			workoutDate: Date.now(),
 			currentWeight: "",
 			workoutTime: "",
@@ -40,6 +41,10 @@ class AddWorkout extends Component {
 			workoutType: "",
 			workoutSubType: "",
 >>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
+=======
+			workoutType: "",
+			workoutSubType: "",
+>>>>>>> parent of ee94588... Added addWorkout form conditional rendering
 			workoutNotes: ""
 		},
 		addExercise: true
@@ -56,6 +61,7 @@ class AddWorkout extends Component {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// handleDropDownChanges = e => {
 	// 	this.setState({
 	// 		workout: {
@@ -69,6 +75,8 @@ class AddWorkout extends Component {
 >>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
 =======
 >>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
+=======
+>>>>>>> parent of ee94588... Added addWorkout form conditional rendering
 	render() {
 		return (
 			<div>
@@ -77,6 +85,7 @@ class AddWorkout extends Component {
 					isOpen={this.props.toggleModalWorkoutValue}
 					onRequestClose={this.props.toggleWorkoutModal}
 				>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 					{!this.state.addExercise && (
@@ -98,6 +107,8 @@ class AddWorkout extends Component {
 =======
 =======
 >>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
+=======
+>>>>>>> parent of ee94588... Added addWorkout form conditional rendering
 					<form onSubmit={false}>
 						<input
 							// progress picture
@@ -114,9 +125,12 @@ class AddWorkout extends Component {
 
 						{/* conditional rendering for form inputs*/}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
 =======
 >>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
+=======
+>>>>>>> parent of ee94588... Added addWorkout form conditional rendering
 
 							<input
 								// workout name
