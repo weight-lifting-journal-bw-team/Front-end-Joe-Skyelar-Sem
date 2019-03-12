@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
 				errors: null
 			};
 
-		case ADD_EXERCISE_SUCCESS:
+		case ADD_EXERCISE_FAILURE:
 			return {
 				...state,
 				fetching: false,

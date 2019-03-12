@@ -48,7 +48,6 @@ export const addExercise = exercise => dispatch => {
 			}
 		)
 		.then(res => {
-			console.log(res);
 			dispatch({ type: ADD_EXERCISE_SUCCESS, payload: res.data });
 		})
 		.catch(err => {
@@ -57,5 +56,22 @@ export const addExercise = exercise => dispatch => {
 				type: ADD_EXERCISE_FAILURE,
 				payload: err.response.data.message
 			});
+		});
+};
+
+export const fetchExercises = id => dispatch => {
+	// dispatch({
+	// 	type: FETCH_EXERCISES_START
+	// });
+
+	axios
+		.get(
+			`https://weight-lifting-journal.herokuapp.com/api/restricted/workouts/user/1`
+		)
+		.then(res => {
+			console.log(res);
+		})
+		.catch(err => {
+			console.log(err.response);
 		});
 };
