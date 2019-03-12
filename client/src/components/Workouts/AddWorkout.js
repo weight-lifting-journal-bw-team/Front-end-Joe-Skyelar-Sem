@@ -18,7 +18,7 @@
 // --> conditionally render the title and submit button
 // --> conditionally change the request
 // When form is submitted, the PUT request will fire
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import WorkoutModal from "react-modal";
 import { toggleWorkoutModal } from "../../actions/workoutActions";
@@ -27,9 +27,14 @@ class AddWorkout extends Component {
 	state = {
 		workout: {
 			workoutName: "",
+<<<<<<< HEAD
 			workoutDate: Date.now(),
 			currentWeight: "",
 			workoutTime: "",
+=======
+			workoutType: "",
+			workoutSubType: "",
+>>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
 			workoutNotes: ""
 		},
 		addExercise: true
@@ -38,12 +43,13 @@ class AddWorkout extends Component {
 	handleChanges = e => {
 		this.setState({
 			workout: {
-				...this.state.workout,
+				...this.state,
 				[e.target.name]: e.target.value
 			}
 		});
 	};
 
+<<<<<<< HEAD
 	// handleDropDownChanges = e => {
 	// 	this.setState({
 	// 		workout: {
@@ -53,6 +59,8 @@ class AddWorkout extends Component {
 	// 	});
 	// };
 
+=======
+>>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
 	render() {
 		return (
 			<div>
@@ -61,6 +69,7 @@ class AddWorkout extends Component {
 					isOpen={this.props.toggleModalWorkoutValue}
 					onRequestClose={this.props.toggleWorkoutModal}
 				>
+<<<<<<< HEAD
 					{!this.state.addExercise && (
 						<form
 						// onSubmit=this will send the workout to the database
@@ -77,6 +86,23 @@ class AddWorkout extends Component {
 								placeholder="workout name"
 								onChange={this.handleChanges}
 							/>
+=======
+					<form onSubmit={false}>
+						<input
+							// progress picture
+							type="file"
+						/>
+
+						<input
+							// workout name
+							name="workoutName"
+							value={this.state.workout.workoutName}
+							placeholder="workout name"
+							onChange={this.handleChanges}
+						/>
+
+						{/* conditional rendering for form inputs*/}
+>>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
 
 							<input
 								// workout name
