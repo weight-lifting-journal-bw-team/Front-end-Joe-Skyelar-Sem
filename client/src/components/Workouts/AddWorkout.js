@@ -39,7 +39,8 @@ class AddWorkout extends Component {
 				exerciseReps: "",
 				maxWeight: ""
 			}
-		]
+		],
+		addExercise: true
 	};
 
 	handleChanges = e => {
@@ -68,7 +69,9 @@ class AddWorkout extends Component {
 					isOpen={this.props.toggleModalWorkoutValue}
 					onRequestClose={this.props.toggleWorkoutModal}
 				>
-					<form>
+					{!this.state.addExercise && <form
+					// onSubmit=this will send the workout to the database
+					>
 						<input
 							// progress picture
 							type="file"
@@ -82,6 +85,16 @@ class AddWorkout extends Component {
 							onChange={this.handleChanges}
 						/>
 
+						<input
+							// workout name
+							name="currentWeight"
+							value={this.state.workout.currentWeight}
+							placeholder="current weight"
+							onChange={this.handleChanges}
+						/>
+						<button>
+						Add Workout</button>
+						{/* 
 						<textarea
 							// workout notes
 							name="workoutNotes"
@@ -89,28 +102,33 @@ class AddWorkout extends Component {
 							placeholder="Notes"
 							onChange={this.handleChanges}
 						/>
-
-						<input
-							name="workoutSets"
-							value={this.state.workout.workoutSets}
-							type="number"
-							placeholder="sets"
-							onChange={this.handleChanges}
-						/>
-						<input
-							name="workoutReps"
-							value={this.state.workout.workoutReps}
-							type="number"
-							placeholder="reps"
-							onChange={this.handleChanges}
-						/>
 						<input
 							name="workoutTime"
 							value={this.state.workout.workoutTime}
 							placeholder="workout time"
 							onChange={this.handleChanges}
-						/>
-					</form>
+						/> */}
+					</form>}
+					{this.state.addExercise && 
+					<form>
+						<input
+						type="text"
+						placeholder="exercise name"
+						></input>
+						<input
+						type="text"
+						placeholder="exercise date"
+						></input>
+						<input
+						type="text"
+						placeholder="exercise sets"
+						></input>
+						<input
+						type="text"
+						placeholder="exercise reps"
+						></input>
+						<button>Add Exercise</button>
+					</form>}
 				</WorkoutModal>
 			</div>
 		);
