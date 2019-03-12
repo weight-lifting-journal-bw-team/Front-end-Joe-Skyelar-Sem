@@ -18,7 +18,7 @@
 // --> conditionally render the title and submit button
 // --> conditionally change the request
 // When form is submitted, the PUT request will fire
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import WorkoutModal from "react-modal";
 import { toggleWorkoutModal } from "../../actions/workoutActions";
@@ -27,8 +27,15 @@ class AddWorkout extends Component {
 	state = {
 		workout: {
 			workoutName: "",
+			workoutDate: Date.now(),
 			workoutType: "",
 			workoutSubType: "",
+			workoutSets: "",
+			workoutReps: "",
+			maxWeight: "",
+			currentWeight: "",
+			workoutTime: "",
+			workoutDistance: "",
 			workoutNotes: ""
 		}
 	};
@@ -36,8 +43,17 @@ class AddWorkout extends Component {
 	handleChanges = e => {
 		this.setState({
 			workout: {
-				...this.state,
+				...this.state.workout,
 				[e.target.name]: e.target.value
+			}
+		});
+	};
+
+	handleDropDownChanges = e => {
+		this.setState({
+			workout: {
+				...this.state.workout,
+				workoutType: e.target.value
 			}
 		});
 	};
@@ -50,7 +66,7 @@ class AddWorkout extends Component {
 					isOpen={this.props.toggleModalWorkoutValue}
 					onRequestClose={this.props.toggleWorkoutModal}
 				>
-					<form onSubmit={false}>
+					<form>
 						<input
 							// progress picture
 							type="file"
@@ -64,7 +80,57 @@ class AddWorkout extends Component {
 							onChange={this.handleChanges}
 						/>
 
-						{/* conditional rendering for form inputs*/}
+						<select
+							onChange={this.handleDropDownChanges}
+							value={this.state.workout.workoutType}
+						>
+							<option value="select">select</option>
+							<option value="cardio">Cardio</option>
+							<option value="strength">Strength</option>
+						</select>
+
+						{this.state.workout.workoutType === "cardio" && (
+							<Fragment>
+								<input
+									name="workoutTime"
+									value={this.state.workout.workoutTime}
+									placeholder="workout time"
+									onChange={this.handleChanges}
+								/>
+								<input
+									type="number"
+									name="workoutDistance"
+									value={this.state.workout.workoutDistance}
+									placeholder="distance"
+									onChange={this.handleChanges}
+								/>
+							</Fragment>
+						)}
+
+						{this.state.workout.workoutType === "strength" && (
+							<Fragment>
+								<input
+									name="workoutSets"
+									value={this.state.workout.workoutSets}
+									type="number"
+									placeholder="sets"
+									onChange={this.handleChanges}
+								/>
+								<input
+									name="workoutReps"
+									value={this.state.workout.workoutReps}
+									type="number"
+									placeholder="reps"
+									onChange={this.handleChanges}
+								/>
+								<input
+									name="workoutTime"
+									value={this.state.workout.workoutTime}
+									placeholder="workout time"
+									onChange={this.handleChanges}
+								/>
+							</Fragment>
+						)}
 
 						<textarea
 							// workout notes
