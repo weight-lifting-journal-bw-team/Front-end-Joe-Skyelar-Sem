@@ -28,16 +28,18 @@ class AddWorkout extends Component {
 		workout: {
 			workoutName: "",
 			workoutDate: Date.now(),
-			workoutType: "",
-			workoutSubType: "",
-			workoutSets: "",
-			workoutReps: "",
-			maxWeight: "",
 			currentWeight: "",
 			workoutTime: "",
-			workoutDistance: "",
 			workoutNotes: ""
-		}
+		},
+		exercises: [
+			{
+				exerciseName: "",
+				exerciseSets: "",
+				exerciseReps: "",
+				maxWeight: ""
+			}
+		]
 	};
 
 	handleChanges = e => {
@@ -49,14 +51,14 @@ class AddWorkout extends Component {
 		});
 	};
 
-	handleDropDownChanges = e => {
-		this.setState({
-			workout: {
-				...this.state.workout,
-				workoutType: e.target.value
-			}
-		});
-	};
+	// handleDropDownChanges = e => {
+	// 	this.setState({
+	// 		workout: {
+	// 			...this.state.workout,
+	// 			workoutType: e.target.value
+	// 		}
+	// 	});
+	// };
 
 	render() {
 		return (
@@ -80,63 +82,32 @@ class AddWorkout extends Component {
 							onChange={this.handleChanges}
 						/>
 
-						<select
-							onChange={this.handleDropDownChanges}
-							value={this.state.workout.workoutType}
-						>
-							<option value="select">select</option>
-							<option value="cardio">Cardio</option>
-							<option value="strength">Strength</option>
-						</select>
-
-						{this.state.workout.workoutType === "cardio" && (
-							<Fragment>
-								<input
-									name="workoutTime"
-									value={this.state.workout.workoutTime}
-									placeholder="workout time"
-									onChange={this.handleChanges}
-								/>
-								<input
-									type="number"
-									name="workoutDistance"
-									value={this.state.workout.workoutDistance}
-									placeholder="distance"
-									onChange={this.handleChanges}
-								/>
-							</Fragment>
-						)}
-
-						{this.state.workout.workoutType === "strength" && (
-							<Fragment>
-								<input
-									name="workoutSets"
-									value={this.state.workout.workoutSets}
-									type="number"
-									placeholder="sets"
-									onChange={this.handleChanges}
-								/>
-								<input
-									name="workoutReps"
-									value={this.state.workout.workoutReps}
-									type="number"
-									placeholder="reps"
-									onChange={this.handleChanges}
-								/>
-								<input
-									name="workoutTime"
-									value={this.state.workout.workoutTime}
-									placeholder="workout time"
-									onChange={this.handleChanges}
-								/>
-							</Fragment>
-						)}
-
 						<textarea
 							// workout notes
 							name="workoutNotes"
 							value={this.state.workout.workoutNotes}
 							placeholder="Notes"
+							onChange={this.handleChanges}
+						/>
+
+						<input
+							name="workoutSets"
+							value={this.state.workout.workoutSets}
+							type="number"
+							placeholder="sets"
+							onChange={this.handleChanges}
+						/>
+						<input
+							name="workoutReps"
+							value={this.state.workout.workoutReps}
+							type="number"
+							placeholder="reps"
+							onChange={this.handleChanges}
+						/>
+						<input
+							name="workoutTime"
+							value={this.state.workout.workoutTime}
+							placeholder="workout time"
 							onChange={this.handleChanges}
 						/>
 					</form>
