@@ -10,6 +10,7 @@
     "react": "^16.8.4",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.8.4",
+    "react-dropdown": "^1.6.4",
     "react-modal": "^3.8.1",
     "react-moment": "^0.8.4",
     "react-redux": "^6.0.1",
