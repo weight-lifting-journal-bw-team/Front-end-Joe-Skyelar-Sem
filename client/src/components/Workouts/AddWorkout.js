@@ -28,9 +28,14 @@ class AddWorkout extends Component {
 		workout: {
 			workoutName: "",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			workoutDate: Date.now(),
 			currentWeight: "",
 			workoutTime: "",
+=======
+			workoutType: "",
+			workoutSubType: "",
+>>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
 =======
 			workoutType: "",
 			workoutSubType: "",
@@ -50,6 +55,7 @@ class AddWorkout extends Component {
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// handleDropDownChanges = e => {
 	// 	this.setState({
 	// 		workout: {
@@ -61,6 +67,8 @@ class AddWorkout extends Component {
 
 =======
 >>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
+=======
+>>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
 	render() {
 		return (
 			<div>
@@ -69,6 +77,7 @@ class AddWorkout extends Component {
 					isOpen={this.props.toggleModalWorkoutValue}
 					onRequestClose={this.props.toggleWorkoutModal}
 				>
+<<<<<<< HEAD
 <<<<<<< HEAD
 					{!this.state.addExercise && (
 						<form
@@ -87,6 +96,8 @@ class AddWorkout extends Component {
 								onChange={this.handleChanges}
 							/>
 =======
+=======
+>>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
 					<form onSubmit={false}>
 						<input
 							// progress picture
@@ -102,6 +113,9 @@ class AddWorkout extends Component {
 						/>
 
 						{/* conditional rendering for form inputs*/}
+<<<<<<< HEAD
+>>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
+=======
 >>>>>>> parent of 030a0ed... Merge pull request #5 from weight-lifting-journal-bw-team/skyelar-carroll
 
 							<input
