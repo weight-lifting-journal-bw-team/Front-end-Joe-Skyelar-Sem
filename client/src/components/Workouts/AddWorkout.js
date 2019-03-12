@@ -35,6 +35,10 @@ class AddWorkout extends Component {
             }
         });
 	};
+	addExercise = e => {
+		e.preventDefault();
+		this.props.addExercise(this.state.workout);
+	}
 	
     render() {
         return (
@@ -43,8 +47,8 @@ class AddWorkout extends Component {
                     isOpen={this.props.toggleModalWorkoutValue}
                     onRequestClose={this.props.toggleWorkoutModal}
                 >
-                    <form>
-                        <input type="file" onChange={this.handleChanges} />
+                    <form onSubmit={this.addExercise}>
+                        {/* <input type="file" onChange={this.handleChanges} /> */}
                         <select
                             onChange={this.handleDropDownChanges}
                             value={this.state.workout.workoutType}
