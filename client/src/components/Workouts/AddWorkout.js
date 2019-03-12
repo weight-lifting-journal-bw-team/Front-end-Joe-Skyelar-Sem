@@ -32,14 +32,6 @@ class AddWorkout extends Component {
 			workoutTime: "",
 			workoutNotes: ""
 		},
-		exercises: [
-			{
-				exerciseName: "",
-				exerciseSets: "",
-				exerciseReps: "",
-				maxWeight: ""
-			}
-		],
 		addExercise: true
 	};
 
@@ -69,32 +61,32 @@ class AddWorkout extends Component {
 					isOpen={this.props.toggleModalWorkoutValue}
 					onRequestClose={this.props.toggleWorkoutModal}
 				>
-					{!this.state.addExercise && <form
-					// onSubmit=this will send the workout to the database
-					>
-						<input
-							// progress picture
-							type="file"
-						/>
+					{!this.state.addExercise && (
+						<form
+						// onSubmit=this will send the workout to the database
+						>
+							<input
+								// progress picture
+								type="file"
+							/>
 
-						<input
-							// workout name
-							name="workoutName"
-							value={this.state.workout.workoutName}
-							placeholder="workout name"
-							onChange={this.handleChanges}
-						/>
+							<input
+								// workout name
+								name="workoutName"
+								value={this.state.workout.workoutName}
+								placeholder="workout name"
+								onChange={this.handleChanges}
+							/>
 
-						<input
-							// workout name
-							name="currentWeight"
-							value={this.state.workout.currentWeight}
-							placeholder="current weight"
-							onChange={this.handleChanges}
-						/>
-						<button>
-						Add Workout</button>
-						{/* 
+							<input
+								// workout name
+								name="currentWeight"
+								value={this.state.workout.currentWeight}
+								placeholder="current weight"
+								onChange={this.handleChanges}
+							/>
+							<button>Add Workout</button>
+							{/*
 						<textarea
 							// workout notes
 							name="workoutNotes"
@@ -108,27 +100,56 @@ class AddWorkout extends Component {
 							placeholder="workout time"
 							onChange={this.handleChanges}
 						/> */}
-					</form>}
-					{this.state.addExercise && 
-					<form>
-						<input
-						type="text"
-						placeholder="exercise name"
-						></input>
-						<input
-						type="text"
-						placeholder="exercise date"
-						></input>
-						<input
-						type="text"
-						placeholder="exercise sets"
-						></input>
-						<input
-						type="text"
-						placeholder="exercise reps"
-						></input>
-						<button>Add Exercise</button>
-					</form>}
+						</form>
+					)}
+
+					{this.state.addExercise && (
+						<form>
+							<input
+								type="text"
+								name="exerciseName"
+								placeholder="exercise name"
+							/>
+
+							{/* turn into dropdown */}
+							<input
+								type="text"
+								name="exerciseRegion"
+								placeholder="time spent on exercise"
+							/>
+
+							<input
+								type="text"
+								name="exerciseSets"
+								placeholder="exercise sets"
+							/>
+							<input
+								type="text"
+								name="exerciseReps"
+								placeholder="exercise reps"
+							/>
+
+							<input
+								type="text"
+								name="exerciseWeight"
+								placeholder="Max weight lifted"
+							/>
+
+							<input
+								type="text"
+								name="exerciseTime"
+								placeholder="time spent on exercise"
+							/>
+
+							<textarea
+								type="text"
+								name="exerciseNotes"
+								placeholder="time spent on exercise"
+							/>
+							<input type="text" placeholder="exercise reps" />
+							<button>Add Exercise</button>
+						</form>
+					)}
 				</WorkoutModal>
 			</div>
 		);
