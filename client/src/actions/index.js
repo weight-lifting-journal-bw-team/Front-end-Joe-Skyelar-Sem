@@ -13,3 +13,9 @@ export const LOGIN_USER_FAILURE = "LOGIN_USER_FAILURE";
 // Workout actions
 
 export const TOGGLE_WORKOUT_MODAL = "TOGGLE_WORKOUT_MODAL";
+
+// Exercise actions
+export const ADD_EXERCISE_START = "ADD_EXERCISE_START";
+export const ADD_EXERCISE_SUCCESS = "ADD_EXERCISE_SUCCESS";
+export const ADD_EXERCISE_FAILURE = "ADD_EXERCISE_FAILURE";
+
