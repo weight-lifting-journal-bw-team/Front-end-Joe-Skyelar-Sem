@@ -139,7 +139,7 @@ export const updateExercise = (exercise, id) => dispatch => {
 		.then(res => {
 			dispatch({
 				type: UPDATE_EXERCISES_SUCCESS,
-				payload: res.data
+				payload: res.data.workout
 			});
 		})
 		.catch(err => {
