@@ -12,8 +12,13 @@ class WorkoutsList extends Component {
 	render() {
 		return (
 			<div>
-				{/* maps over an array of workouts and return 5 most recent workouts (sort by workout id desc) */}
-				<Workout />
+				{this.props.exercises.map(exercise => (
+					<Workout 
+					key={exercise.workout_id}
+					{...exercise}
+					/>
+				))}
+				
 			</div>
 		);
 	}
@@ -21,7 +26,7 @@ class WorkoutsList extends Component {
 
 const mapStateToProps = state => {
 	return {
-		something: null
+		exercises: state.exerciseReducer.exercises
 	};
 };
 
