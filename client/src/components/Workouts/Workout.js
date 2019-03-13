@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { deleteExercise } from "../../actions/exerciseActions";
+import { deleteExercise, updateExercise } from "../../actions/exerciseActions";
 
 class Workout extends Component {
 	state = {
@@ -10,7 +10,7 @@ class Workout extends Component {
 			workoutName: this.props.workout_name,
 			workoutType: this.props.workout_type,
 			workoutSubType: this.props.workout_subtype,
-			workoutSets: this.props.workout_set,
+			workoutSets: this.props.workout_sets,
 			workoutReps: this.props.workout_reps,
 			maxWeight: this.props.max_weight,
 			currentWeight: this.props.current_weight,
@@ -51,6 +51,12 @@ class Workout extends Component {
 				[e.target.name]: e.target.value
 			}
 		});
+	};
+
+	updateEdit = e => {
+		e.preventDefault();
+
+		this.props.updateExercise(this.state.workout, this.props.workout_id);
 	};
 
 	render() {
@@ -155,7 +161,9 @@ class Workout extends Component {
 								onChange={this.handleChanges}
 							/>
 
-							<button>Update Exercise</button>
+							<button onClick={this.updateEdit}>
+								Update Exercise
+							</button>
 
 							<button onClick={this.showExercise}>Back</button>
 						</div>
@@ -168,5 +176,5 @@ class Workout extends Component {
 
 export default connect(
 	null,
-	{ deleteExercise }
+	{ deleteExercise, updateExercise }
 )(Workout);

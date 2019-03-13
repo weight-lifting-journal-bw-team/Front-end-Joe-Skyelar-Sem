@@ -6,6 +6,9 @@ import {
 	FETCH_EXERCISES_START,
 	FETCH_EXERCISES_SUCCESS,
 	FETCH_EXERCISES_FAILURE,
+	UPDATE_EXERCISES_START,
+	UPDATE_EXERCISES_SUCCESS,
+	UPDATE_EXERCISES_FAILURE,
 	DELETE_EXERCISES_START,
 	DELETE_EXERCISES_SUCCESS,
 	DELETE_EXERCISES_FAILURE
@@ -87,6 +90,61 @@ export const fetchExercises = id => dispatch => {
 		.catch(err => {
 			dispatch({
 				type: FETCH_EXERCISES_FAILURE,
+				payload: err.response.data.message
+			});
+		});
+};
+
+export const updateExercise = (exercise, id) => dispatch => {
+	dispatch({
+		type: UPDATE_EXERCISES_START
+	});
+
+	const {
+		workoutName,
+		workoutType,
+		workoutSubtype,
+		workoutSets,
+		workoutReps,
+		maxWeight,
+		currentWeight,
+		workoutTime,
+		workoutDistance,
+		workoutNotes
+	} = exercise;
+
+	let updateExercise = {
+		workout_name: workoutName,
+		workout_type: workoutType,
+		workout_subtype: workoutSubtype,
+		workout_sets: parseInt(workoutSets, 10),
+		workout_reps: parseInt(workoutReps, 10),
+		max_weight: parseInt(maxWeight, 10),
+		current_weight: parseInt(currentWeight, 10),
+		workout_time: parseInt(workoutTime, 10),
+		workout_distance: parseInt(workoutDistance, 10),
+		workout_notes: workoutNotes,
+		body_region: null
+	};
+
+	axios
+		.put(
+			`https://weight-lifting-journal.herokuapp.com/api/restricted/workouts/${id}`,
+			updateExercise,
+			{
+				"Content-Type": "application/json",
+				headers: { authorization: localStorage.getItem("token") }
+			}
+		)
+		.then(res => {
+			dispatch({
+				type: UPDATE_EXERCISES_SUCCESS,
+				payload: res.data
+			});
+		})
+		.catch(err => {
+			dispatch({
+				type: UPDATE_EXERCISES_FAILURE,
 				payload: err.response.data.message
 			});
 		});
