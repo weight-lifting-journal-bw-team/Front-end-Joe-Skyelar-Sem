@@ -13,23 +13,26 @@ class Workout extends Component {
 
   render() {
     return (
-      <Fragment>
-        This is a workout
-        {/* This will have some conditional rendering - when the workoutToggle is false, it'll be a minimized view, else when true, this will be an expanded item */}
-        <div
+      <Fragment
+      >
+        <div   
         onClick={this.toggleWorkout} 
         className="workout-container">
-            <h1>Leg Day</h1>
+            Click this to expand this workout v
+            <h1>{this.props.workout_name}</h1>
             {this.state.workoutToggle && <div
             className="expanded-content"
             >  
-                <img alt="workout-picture"/>
-                <p>Current Weight</p>
-                {/* map over to get these for each workout */}
-                <p>Max Weight</p>
-                <p>Sets</p>
-                <p>Reps</p>
-                {/* Exercise List */}
+                <img src={this.props.progress_picture}/>
+                <p>{this.props.current_weight}</p>
+                <p>{this.props.max_weight}</p>
+                <p>{this.props.workout_sets}</p>
+                <p>{this.props.workout_reps}</p>
+                <p>{this.props.body_region}</p>
+                <p>{this.props.workout_distance}</p>
+                <p>{this.props.workout_notes}</p>
+                <p>{this.props.workout_time}</p>
+                <p>{this.props.workout_type}</p>
                 {/* Add Exercise Form */}
             </div>}
         </div>
