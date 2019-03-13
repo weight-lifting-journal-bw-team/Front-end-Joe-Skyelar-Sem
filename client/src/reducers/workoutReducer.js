@@ -1,5 +1,7 @@
 import {
     TOGGLE_WORKOUT_MODAL,
+    TOGGLE_ADD_WORKOUT_FORM,
+    
     ADD_WORKOUT_START,
     ADD_WORKOUT_SUCCESS,
     ADD_WORKOUT_FAILURE,
@@ -19,10 +21,11 @@ import {
 
 const initialState = {
     toggleWorkoutModal: false,
+    addExercise: false,
     workouts: [],
     workoutId: null,
     fetching: false,
-    errors: null
+    errors: null,
 }
 
 export default (state = initialState, action) => {
@@ -31,6 +34,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 toggleWorkoutModal: !state.toggleWorkoutModal                
+            }
+        
+        case TOGGLE_ADD_WORKOUT_FORM:
+            return {
+                ...state,
+                addExercise: !state.addExercise
             }
 
         case ADD_WORKOUT_START:

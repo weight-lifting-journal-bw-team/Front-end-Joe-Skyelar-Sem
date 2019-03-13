@@ -3,6 +3,8 @@ import moment from 'moment';
 
 import { 
     TOGGLE_WORKOUT_MODAL,
+    TOGGLE_ADD_WORKOUT_FORM,
+
     ADD_WORKOUT_START,
     ADD_WORKOUT_SUCCESS,
     ADD_WORKOUT_FAILURE
@@ -14,6 +16,12 @@ export const toggleWorkoutModal = () => dispatch => {
         type: TOGGLE_WORKOUT_MODAL
     });  
 }
+
+export const toggleAddWorkoutForm = () => dispatch => {
+         dispatch({
+           type: TOGGLE_ADD_WORKOUT_FORM
+         });
+       };
 
 export const addWorkout = workout => dispatch => {
     dispatch({

@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+
+import {addExercise} from '../../actions/exerciseActions'
 
 class AddExercise extends Component {
     state = {
@@ -12,18 +15,34 @@ class AddExercise extends Component {
 
     handleChanges = e => {
         this.setState({
-            workout: {
-                ...this.state.workout,
+            exercise: {
+                ...this.state.exercise,
                 [e.target.name]: e.target.value
             }
         });
     };
+
+    handleAddExercise = e => {
+        e.preventDefault()
+
+        this.props.addExercise(this.state.exercise);
+
+        this.setState({
+            exercise: {
+                ...this.state.exercise,
+                name: "",
+                reps: "",
+                sets: "",
+                weight: ""
+            }
+        })
+    }
     
   render() {
     return (
       <div>
-      <h1>Add exercise to w</h1>
-        <form>
+      <h1>Add exercise to workout</h1>
+        <form onSubmit={this.handleAddExercise}>
             <input 
                 name="name"
                 value={this.state.exercise.name}
@@ -31,6 +50,7 @@ class AddExercise extends Component {
                 onChange={this.handleChanges} 
             />
             <input 
+                type="number"
                 name="reps"
                 value={this.state.exercise.reps}
                 placeholder="Reps" 
@@ -38,6 +58,7 @@ class AddExercise extends Component {
             />
             <input 
                 name="sets"
+                type="number"
                 value={this.state.exercise.sets} 
                 placeholder="Sets" 
                 onChange={this.handleChanges}
@@ -48,7 +69,7 @@ class AddExercise extends Component {
                 placeholder="Weight" 
                 onChange={this.handleChanges}
             />
-            <button>Add Exercise</button>
+            <button type="submit">Add Exercise</button>
             {/* 
                 On submit exercise will be added to journal by id
                 and added to a list of exercises
@@ -60,4 +81,7 @@ class AddExercise extends Component {
   }
 }
 
-export default AddExercise;
+export default connect(
+    null,
+    { addExercise }
+)(AddExercise);
