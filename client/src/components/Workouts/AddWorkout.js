@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import WorkoutModal from "react-modal";
-import { toggleWorkoutModal } from "../../actions/workoutActions";
+import { toggleWorkoutModal, addWorkout } from "../../actions/workoutActions";
 
 class AddWorkout extends Component {
 	state = {
@@ -18,27 +18,32 @@ class AddWorkout extends Component {
 		});
 	};
 
-	// addExercise = e => {
-		
-	// };
+	addWorkout = e => {
+		e.preventDefault();
+
+		this.props.addWorkout(this.state.workout)
+	};
 
 	render() {
 		return (
-      <div>
-        <WorkoutModal
-          isOpen={this.props.toggleModalWorkoutValue}
-          onRequestClose={this.props.toggleWorkoutModal}
-        >
-          <input
-            type="text"
-            value={this.state.workout.region}
-            name="region"
-            placeholder="Body Region"
-            onChange={this.handleChanges}
-          />
-        </WorkoutModal>
-      </div>
-    );
+			<div>
+				<WorkoutModal
+				isOpen={this.props.toggleModalWorkoutValue}
+				onRequestClose={this.props.toggleWorkoutModal}
+				>
+				<form onSubmit={this.addWorkout}>
+						<input
+							type="text"
+							value={this.state.workout.region}
+							name="region"
+							placeholder="Body Region"
+							onChange={this.handleChanges}
+						/>
+						<button type="submit">Add Exercise</button>
+				</form>
+				</WorkoutModal>
+			</div>
+		);
 	}
 }
 const mapStateToProps = ({ workoutReducer }) => ({
@@ -46,5 +51,5 @@ const mapStateToProps = ({ workoutReducer }) => ({
 });
 export default connect(
 	mapStateToProps,
-	{ toggleWorkoutModal }
+	{ toggleWorkoutModal, addWorkout }
 )(AddWorkout);

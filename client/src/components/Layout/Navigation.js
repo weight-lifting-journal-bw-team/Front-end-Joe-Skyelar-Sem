@@ -25,7 +25,7 @@ class Navigation extends Component {
 		return (
 			<NavBarWrapper>
 				<AddWorkoutButton onClick={this.props.toggleWorkoutModal}>
-					ADD EXERCISE
+					ADD WORKOUT
 				</AddWorkoutButton>
 				<ProfileWrapper 
 				onClick={this.handleDropdown}>

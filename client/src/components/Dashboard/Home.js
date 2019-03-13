@@ -15,7 +15,7 @@ class Home extends Component {
 				<h2>Stats</h2>
 				<h2>Chart</h2>
 				<AddWorkout />
-				<WorkoutsList />
+				{/* <WorkoutsList /> */}
 			</div>
 		);
 	}
