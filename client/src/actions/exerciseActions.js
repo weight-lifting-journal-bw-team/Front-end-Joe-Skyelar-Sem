@@ -5,7 +5,10 @@ import {
 	ADD_EXERCISE_FAILURE,
 	FETCH_EXERCISES_START,
 	FETCH_EXERCISES_SUCCESS,
-	FETCH_EXERCISES_FAILURE
+	FETCH_EXERCISES_FAILURE,
+	DELETE_EXERCISES_START,
+	DELETE_EXERCISES_SUCCESS,
+	DELETE_EXERCISES_FAILURE
 } from "./index";
 
 export const addExercise = exercise => dispatch => {
@@ -90,6 +93,10 @@ export const fetchExercises = id => dispatch => {
 };
 
 export const deleteExercise = id => dispatch => {
+	dispatch({
+		type: DELETE_EXERCISES_START
+	});
+
 	axios
 		.delete(
 			`https://weight-lifting-journal.herokuapp.com/api/restricted/workouts/${id}`,
@@ -98,6 +105,16 @@ export const deleteExercise = id => dispatch => {
 				headers: { authorization: localStorage.getItem("token") }
 			}
 		)
-		.then(res => console.log(res.data))
-		.catch(err => console.log(err));
+		.then(res => {
+			dispatch({
+				type: DELETE_EXERCISES_SUCCESS,
+				payload: res.data
+			});
+		})
+		.catch(err => {
+			dispatch({
+				type: DELETE_EXERCISES_FAILURE,
+				payload: err.response.data.message
+			});
+		});
 };
