@@ -124,8 +124,11 @@ export const updateExercise = (exercise, id) => dispatch => {
 		workout_time: parseInt(workoutTime, 10),
 		workout_distance: parseInt(workoutDistance, 10),
 		workout_notes: workoutNotes,
-		body_region: null
-	};
+    body_region: null,
+    user_id: 1
+  };
+  
+  console.log(updateExercise)
 
 	axios
 		.put(
@@ -137,12 +140,14 @@ export const updateExercise = (exercise, id) => dispatch => {
 			}
 		)
 		.then(res => {
+      console.log(res)
 			dispatch({
 				type: UPDATE_EXERCISES_SUCCESS,
 				payload: res.data.workout
 			});
 		})
 		.catch(err => {
+      console.log(err.response)
 			dispatch({
 				type: UPDATE_EXERCISES_FAILURE,
 				payload: err.response.data.message
