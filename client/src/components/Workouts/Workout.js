@@ -4,12 +4,25 @@ import { deleteExercise } from "../../actions/exerciseActions";
 
 class Workout extends Component {
 	state = {
-		workoutToggle: false
+		workoutToggle: false,
+		editExercise: false
 	};
 
 	toggleWorkout = () => {
 		this.setState({
 			workoutToggle: !this.state.workoutToggle
+		});
+	};
+
+	editExercise = e => {
+		this.setState({
+			editExercise: !this.state.editExercise
+		});
+	};
+
+	showExercise = e => {
+		this.setState({
+			editExercise: !this.state.editExercise
 		});
 	};
 
@@ -23,24 +36,78 @@ class Workout extends Component {
 		return (
 			<Fragment>
 				<div onClick={this.toggleWorkout} className="workout-container">
-					Click this to expand this workout v
-					<h1>{this.props.workout_name}</h1>
-					{this.state.workoutToggle && (
-						<div className="expanded-content">
-							<img src={this.props.progress_picture} />
-							<p>{this.props.current_weight}</p>
-							<p>{this.props.max_weight}</p>
-							<p>{this.props.workout_sets}</p>
-							<p>{this.props.workout_reps}</p>
-							<p>{this.props.body_region}</p>
-							<p>{this.props.workout_distance}</p>
-							<p>{this.props.workout_notes}</p>
-							<p>{this.props.workout_time}</p>
-							<p>{this.props.workout_type}</p>
+					{!this.state.editExercise ? (
+						<div>
+							{" "}
+							<h1>{this.props.workout_name}</h1>
+							{this.state.workoutToggle && (
+								<div className="expanded-content">
+									<img src={this.props.progress_picture} />
+									<p>{this.props.current_weight}</p>
+									<p>{this.props.max_weight}</p>
+									<p>{this.props.workout_sets}</p>
+									<p>{this.props.workout_reps}</p>
+									<p>{this.props.body_region}</p>
+									<p>{this.props.workout_distance}</p>
+									<p>{this.props.workout_notes}</p>
+									<p>{this.props.workout_time}</p>
+									<p>{this.props.workout_type}</p>
 
-							<button onClick={this.deleteExercise}>
-								Delete
-							</button>
+									<button onClick={this.editExercise}>
+										Edit
+									</button>
+
+									<button onClick={this.deleteExercise}>
+										Delete
+									</button>
+								</div>
+							)}
+						</div>
+					) : (
+						<div>
+							<input
+								type="text"
+								value={this.props.workout_name}
+							/>
+
+							<input
+								type="text"
+								value={this.props.current_weight}
+							/>
+							<input type="text" value={this.props.max_weight} />
+
+							<input
+								type="text"
+								value={this.props.workout_sets}
+							/>
+
+							<input
+								type="text"
+								value={this.props.workout_reps}
+							/>
+							<input type="text" value={this.props.body_region} />
+							<input
+								type="text"
+								value={this.props.workout_distance}
+							/>
+							<textarea
+								type="text"
+								value={this.props.workout_notes}
+							/>
+
+							<input
+								type="text"
+								value={this.props.workout_time}
+							/>
+
+							<input
+								type="text"
+								value={this.props.workout_type}
+							/>
+
+							<button>Update Exercise</button>
+
+							<button onClick={this.showExercise}>Back</button>
 						</div>
 					)}
 				</div>
