@@ -54,7 +54,7 @@ export const addExercise = exercise => dispatch => {
 			}
 		)
 		.then(res => {
-			dispatch({ type: ADD_EXERCISE_SUCCESS, payload: res.data });
+			dispatch({ type: ADD_EXERCISE_SUCCESS, payload: res.data.workout });
 		})
 		.catch(err => {
 			console.log(err);
@@ -108,7 +108,7 @@ export const deleteExercise = id => dispatch => {
 		.then(res => {
 			dispatch({
 				type: DELETE_EXERCISES_SUCCESS,
-				payload: res.data
+				payload: id
 			});
 		})
 		.catch(err => {

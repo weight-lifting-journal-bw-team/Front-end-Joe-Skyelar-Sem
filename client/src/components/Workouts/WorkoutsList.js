@@ -12,21 +12,18 @@ class WorkoutsList extends Component {
 	render() {
 		return (
 			<div>
-				{this.props.exercises.map(exercise => (
-					<Workout 
-					key={exercise.workout_id}
-					{...exercise}
-					/>
+				{this.props.exercises.map((exercise, i) => (
+					<Workout key={exercise.workout_id} {...exercise} />
 				))}
-				
+				{console.log(this.props.exercises)}
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ exerciseReducer }) => {
 	return {
-		exercises: state.exerciseReducer.exercises
+		exercises: exerciseReducer.exercises
 	};
 };
 

@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { Router, withRouter } from "react-router-dom";
 import history from "./helpers/history";
+import WorkoutModal from "react-modal";
 
 // Redux setup
 import { Provider } from "react-redux";
 import store from "./store";
+
+WorkoutModal.setAppElement("#root");
 
 const AppWithRouter = withRouter(App);
 
