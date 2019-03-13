@@ -1,14 +1,11 @@
 import axios from "axios";
 import {
-
 	ADD_EXERCISE_START,
 	ADD_EXERCISE_SUCCESS,
-  ADD_EXERCISE_FAILURE,
-  
-  FETCH_EXERCISES_START,
-  FETCH_EXERCISES_SUCCESS,
-  FETCH_EXERCISES_FAILURE,
-
+	ADD_EXERCISE_FAILURE,
+	FETCH_EXERCISES_START,
+	FETCH_EXERCISES_SUCCESS,
+	FETCH_EXERCISES_FAILURE
 } from "./index";
 
 export const addExercise = exercise => dispatch => {
@@ -72,18 +69,35 @@ export const fetchExercises = id => dispatch => {
 
 	axios
 		.get(
-      `https://weight-lifting-journal.herokuapp.com/api/restricted/workouts/user/1`,
-      {
+			`https://weight-lifting-journal.herokuapp.com/api/restricted/workouts/user/1`,
+			{
 				"Content-Type": "application/json",
 				headers: { authorization: localStorage.getItem("token") }
 			}
 		)
 		.then(res => {
-      console.log(res);
-      dispatch({type: FETCH_EXERCISES_SUCCESS, payload: res.data.workouts})
+			dispatch({
+				type: FETCH_EXERCISES_SUCCESS,
+				payload: res.data.workouts
+			});
 		})
 		.catch(err => {
-      console.log(err.response);
-      dispatch({type: FETCH_EXERCISES_FAILURE, payload: err.response.data.message})
+			dispatch({
+				type: FETCH_EXERCISES_FAILURE,
+				payload: err.response.data.message
+			});
 		});
+};
+
+export const deleteExercise = id => dispatch => {
+	axios
+		.delete(
+			`https://weight-lifting-journal.herokuapp.com/api/restricted/workouts/${id}`,
+			{
+				"Content-Type": "application/json",
+				headers: { authorization: localStorage.getItem("token") }
+			}
+		)
+		.then(res => console.log(res.data))
+		.catch(err => console.log(err));
 };
