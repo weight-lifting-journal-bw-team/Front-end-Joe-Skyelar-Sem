@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // Layout components
 import Navigation from "../Layout/Navigation";
-import WorkoutsList from "../Workouts/WorkoutsList"
+// import WorkoutsList from "../Workouts/WorkoutsList"
 
 import AddWorkout from '../Workouts/AddWorkout';
 
