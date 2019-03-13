@@ -5,7 +5,19 @@ import { deleteExercise } from "../../actions/exerciseActions";
 class Workout extends Component {
 	state = {
 		workoutToggle: false,
-		editExercise: false
+		editExercise: false,
+		workout: {
+			workoutName: this.props.workout_name,
+			workoutType: this.props.workout_type,
+			workoutSubType: this.props.workout_subtype,
+			workoutSets: this.props.workout_set,
+			workoutReps: this.props.workout_reps,
+			maxWeight: this.props.max_weight,
+			currentWeight: this.props.current_weight,
+			workoutTime: this.props.workout_time,
+			workoutDistance: this.props.workout_distance,
+			workoutNotes: this.props.workout_notes
+		}
 	};
 
 	toggleWorkout = () => {
@@ -30,6 +42,15 @@ class Workout extends Component {
 		e.preventDefault();
 
 		this.props.deleteExercise(this.props.workout_id);
+	};
+
+	handleChanges = e => {
+		this.setState({
+			workout: {
+				...this.state.workout,
+				[e.target.name]: e.target.value
+			}
+		});
 	};
 
 	render() {
@@ -67,42 +88,71 @@ class Workout extends Component {
 						<div>
 							<input
 								type="text"
-								value={this.props.workout_name}
+								name="workoutName"
+								value={this.state.workout.workoutName}
+								onChange={this.handleChanges}
 							/>
 
 							<input
 								type="text"
-								value={this.props.current_weight}
-							/>
-							<input type="text" value={this.props.max_weight} />
-
-							<input
-								type="text"
-								value={this.props.workout_sets}
+								name="currentWeight"
+								value={this.state.workout.currentWeight}
+								onChange={this.handleChanges}
 							/>
 
 							<input
-								type="text"
-								value={this.props.workout_reps}
+								type="number"
+								name="maxWeight"
+								value={this.state.workout.maxWeight}
+								onChange={this.handleChanges}
 							/>
-							<input type="text" value={this.props.body_region} />
+
 							<input
 								type="text"
-								value={this.props.workout_distance}
+								name="workoutSets"
+								value={this.state.workout.workoutSets}
+								onChange={this.handleChanges}
 							/>
+
+							<input
+								type="text"
+								name="workoutReps"
+								value={this.state.workout.workoutReps}
+								onChange={this.handleChanges}
+							/>
+							<input
+								type="text"
+								name="bodyRegion"
+								value={this.state.workout.bodyRegion}
+								onChange={this.handleChanges}
+							/>
+
 							<textarea
 								type="text"
-								value={this.props.workout_notes}
+								name="workoutNotes"
+								value={this.state.workout.workoutNotes}
+								onChange={this.handleChanges}
 							/>
 
 							<input
 								type="text"
-								value={this.props.workout_time}
+								name="workoutTime"
+								value={this.state.workout.workoutTime}
+								onChange={this.handleChanges}
 							/>
 
 							<input
 								type="text"
-								value={this.props.workout_type}
+								name="workoutDistance"
+								value={this.state.workout.workoutDistance}
+								onChange={this.handleChanges}
+							/>
+
+							<input
+								type="text"
+								name="workoutType"
+								value={this.state.workout.workoutType}
+								onChange={this.handleChanges}
 							/>
 
 							<button>Update Exercise</button>
