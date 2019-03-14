@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { deleteWorkout } from "../../actions/workoutActions";
+import { deleteWorkout, updateWorkout } from "../../actions/workoutActions";
 
 import { WorkoutWrapper, DropDownWrapper } from "./WorkoutStyles";
 
@@ -9,7 +9,7 @@ import ExerciseList from "../Exercises/ExerciseList";
 class Workout extends Component {
 	state = {
 		workoutToggle: false,
-		editingWorkout: false,
+		isEditing: false,
 		workout: {
 			region: this.props.region
 		}
@@ -21,7 +21,13 @@ class Workout extends Component {
 		});
 	};
 
-	// updateWorkout
+	updateWorkout = e => {
+		this.props.updateWorkout(this.state.workout, this.props.id);
+
+		this.setState({
+			isEditing: !this.state.isEditing
+		});
+	};
 
 	deleteWorkout = e => {
 		e.preventDefault();
@@ -37,6 +43,12 @@ class Workout extends Component {
 		});
 	};
 
+	handleEdit = () => {
+		this.setState({
+			isEditing: !this.state.isEditing
+		});
+	};
+
 	render() {
 		return (
 			<Fragment>
@@ -47,16 +59,37 @@ class Workout extends Component {
 						<Exercise />
 				*/}
 				<WorkoutWrapper>
-					{/* {editingWorkout ? } */}
-					<div onClick={this.toggleWorkout}>
-						<h1>{this.props.region}</h1>
-					</div>
 					<div>
-						<button>Update Workout</button>
-						<button onClick={this.deleteWorkout}>
-							Delete Workout
-						</button>
+						{!this.state.isEditing ? (
+							<div>
+								<h1 onClick={this.toggleWorkout}>
+									{this.state.workout.region}
+								</h1>
+								<button onClick={this.handleEdit}>
+									Edit Workout
+								</button>
+								<button onClick={this.deleteWorkout}>
+									Delete Workout
+								</button>
+							</div>
+						) : (
+							<div>
+								<input
+									type="text"
+									name="region"
+									value={this.state.workout.region}
+									onChange={this.handleChanges}
+								/>
+								<button onClick={this.updateWorkout}>
+									Update
+								</button>
+								<button onClick={this.handleEdit}>
+									Cancel
+								</button>
+							</div>
+						)}
 					</div>
+					<div />
 				</WorkoutWrapper>
 				{this.state.workoutToggle && (
 					<DropDownWrapper>
@@ -70,5 +103,5 @@ class Workout extends Component {
 
 export default connect(
 	null,
-	{ deleteWorkout }
+	{ deleteWorkout, updateWorkout }
 )(Workout);

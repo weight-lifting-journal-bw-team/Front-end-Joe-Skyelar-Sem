@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import { deleteExercise, updateExercise } from "../../actions/exerciseActions";
 
 class Exercise extends Component {
 	state = {
@@ -13,10 +16,14 @@ class Exercise extends Component {
 
 	deleteExercise = e => {
 		e.preventDefault();
+		this.props.deleteExercise(this.props.id);
 	};
 
 	updateExercise = e => {
 		e.preventDefault();
+		this.props.updateExercise(this.state.exercise, this.props.id);
+
+		this.setState({ isEditing: !this.state.isEditing });
 	};
 
 	handleEdit = () => {
@@ -27,8 +34,10 @@ class Exercise extends Component {
 
 	handleChanges = e => {
 		this.setState({
-			...this.state.exercise,
-			[e.target.name]: e.target.value
+			exercise: {
+				...this.state.exercise,
+				[e.target.name]: e.target.value
+			}
 		});
 	};
 
@@ -48,7 +57,9 @@ class Exercise extends Component {
 						</div>
 						<div>
 							<button onClick={this.handleEdit}>Edit</button>
-							<button>Delete</button>
+							<button onClick={this.deleteExercise}>
+								Delete
+							</button>
 						</div>
 					</div>
 				) : (
@@ -81,7 +92,9 @@ class Exercise extends Component {
 							placeholder="max weight"
 							onChange={this.handleChanges}
 						/>
-						<button>Update exercise</button>
+						<button onClick={this.updateExercise}>
+							Update exercise
+						</button>
 						<button onClick={this.handleEdit}>Cancel</button>
 					</div>
 				)}
@@ -90,4 +103,7 @@ class Exercise extends Component {
 	}
 }
 
-export default Exercise;
+export default connect(
+	null,
+	{ deleteExercise, updateExercise }
+)(Exercise);

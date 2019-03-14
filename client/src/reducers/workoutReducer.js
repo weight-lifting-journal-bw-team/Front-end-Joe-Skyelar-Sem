@@ -93,6 +93,9 @@ export default (state = initialState, action) => {
 		case UPDATE_WORKOUT_SUCCESS:
 			return {
 				...state,
+				workouts: state.workouts.map(workout =>
+					workout.id === action.payload.id ? action.payload : workout
+				),
 				fetching: false,
 				errors: null
 			};

@@ -72,23 +72,13 @@ export default (state = initialState, action) => {
 			};
 
 		case UPDATE_EXERCISE_SUCCESS:
-			let updatedExercise = [];
-
-			state.exercises.map(exercise => {
-				let newExercise =
-					exercise.workout_id !== action.payload.workout_id
-						? exercise
-						: action.payload;
-
-				return updatedExercise.push(newExercise);
-			});
-
-			// let check = state.exercises.map(exercise => exercise.workout_id !== action.payload.workout_id ? exercise : action.payload)
-			// console.log(`check: ${check}`)
-
 			return {
 				...state,
-				exercises: [...updatedExercise],
+				exercises: state.exercises.map(exercise =>
+					exercise.id === action.payload.id
+						? action.payload
+						: exercise
+				),
 				fetching: false,
 				errors: null
 			};
@@ -109,11 +99,9 @@ export default (state = initialState, action) => {
 		case DELETE_EXERCISE_SUCCESS:
 			return {
 				...state,
-				exercises: [
-					...state.exercises.filter(
-						exercise => exercise.workout_id !== action.payload
-					)
-				],
+				exercises: state.exercises.filter(
+					exercise => exercise.id !== action.payload
+				),
 				fetching: false,
 				errors: null
 			};
