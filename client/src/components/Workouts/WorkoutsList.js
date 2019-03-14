@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Workout from "./Workout";
 
+import { WorkoutsListWrapper } from "./WorkoutStyles";
+
 import { fetchWorkouts } from "../../actions/workoutActions";
 
 class WorkoutsList extends Component {
@@ -11,13 +13,13 @@ class WorkoutsList extends Component {
 
 	render() {
 		return (
-			<div>
+			<WorkoutsListWrapper>
 				{this.props.workouts.map(workout =>
 					workout.userId === 1 ? (
 						<Workout key={workout.id} {...workout} />
 					) : null
 				)}
-			</div>
+			</WorkoutsListWrapper>
 		);
 	}
 }

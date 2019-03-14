@@ -1,10 +1,29 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { deleteWorkout, updateWorkout } from "../../actions/workoutActions";
+import { fetchExercises } from "../../actions/exerciseActions";
 
-import { WorkoutWrapper, DropDownWrapper } from "./WorkoutStyles";
+import {
+	WorkoutWrapper,
+	WorkoutContainer,
+	DropDownWrapper,
+	WorkoutRegionHeader,
+	EditButton,
+	DeleteButton
+} from "./WorkoutStyles";
+
+import {
+	SolidRoundBtn,
+	RoundBtn,
+	UnderlineFormInput
+} from "../styles/FormStyles";
 
 import ExerciseList from "../Exercises/ExerciseList";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+library.add([faTrashAlt, faPencilAlt]);
 
 class Workout extends Component {
 	state = {
@@ -51,57 +70,67 @@ class Workout extends Component {
 
 	render() {
 		return (
-			<Fragment>
-				{/*
-
-					Render region name
-					<ExerciseList />
-						<Exercise />
-				*/}
-				<WorkoutWrapper>
-					<div>
-						{!this.state.isEditing ? (
-							<div>
-								<h1 onClick={this.toggleWorkout}>
-									{this.state.workout.region}
-								</h1>
-								<button onClick={this.handleEdit}>
-									Edit Workout
-								</button>
-								<button onClick={this.deleteWorkout}>
-									Delete Workout
-								</button>
-							</div>
-						) : (
-							<div>
-								<input
-									type="text"
-									name="region"
-									value={this.state.workout.region}
-									onChange={this.handleChanges}
+			<WorkoutWrapper>
+				{!this.state.isEditing ? (
+					<WorkoutContainer>
+						<div>
+							<WorkoutRegionHeader onClick={this.toggleWorkout}>
+								{this.state.workout.region}
+							</WorkoutRegionHeader>
+						</div>
+						<div>
+							<EditButton onClick={this.handleEdit}>
+								<FontAwesomeIcon
+									icon={faPencilAlt}
+									style={{ color: "#fff" }}
 								/>
-								<button onClick={this.updateWorkout}>
-									Update
-								</button>
-								<button onClick={this.handleEdit}>
-									Cancel
-								</button>
-							</div>
-						)}
-					</div>
-					<div />
-				</WorkoutWrapper>
+							</EditButton>
+							<DeleteButton onClick={this.deleteWorkout}>
+								<FontAwesomeIcon
+									icon={faTrashAlt}
+									style={{ color: "#fff" }}
+								/>
+							</DeleteButton>
+						</div>
+					</WorkoutContainer>
+				) : (
+					<WorkoutContainer>
+						<div>
+							<UnderlineFormInput
+								type="text"
+								name="region"
+								value={this.state.workout.region}
+								onChange={this.handleChanges}
+							/>
+						</div>
+						<div>
+							<RoundBtn onClick={this.handleEdit}>
+								Cancel
+							</RoundBtn>
+							<SolidRoundBtn onClick={this.updateWorkout}>
+								Update
+							</SolidRoundBtn>
+						</div>
+					</WorkoutContainer>
+				)}
+
 				{this.state.workoutToggle && (
 					<DropDownWrapper>
-						<ExerciseList workoutId={this.props.id} />
+						<ExerciseList exercises={this.props.exercises} />
 					</DropDownWrapper>
 				)}
-			</Fragment>
+			</WorkoutWrapper>
 		);
 	}
 }
 
+const mapStateToProps = ({ exerciseReducer }) => {
+	return {
+		exercises: exerciseReducer.exercises
+	};
+};
+
 export default connect(
-	null,
-	{ deleteWorkout, updateWorkout }
+	mapStateToProps,
+	{ deleteWorkout, updateWorkout, fetchExercises }
 )(Workout);

@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import { deleteExercise, updateExercise } from "../../actions/exerciseActions";
+
+import { TableRowWrapper, TableDataWrapper } from "./ExerciseStyles";
 
 class Exercise extends Component {
 	state = {
@@ -43,27 +45,31 @@ class Exercise extends Component {
 
 	render() {
 		return (
-			<div>
+			<TableRowWrapper>
 				{!this.state.isEditing ? (
-					<div>
-						{" "}
-						<div>
-							<h1>name: {this.state.exercise.name}</h1>
-						</div>
-						<div>
-							<p>sets: {this.state.exercise.sets}</p>
-							<p>reps: {this.state.exercise.reps}</p>
-							<p>weight: {this.state.exercise.weight}</p>
-						</div>
-						<div>
+					<Fragment>
+						<TableDataWrapper>
+							{this.state.exercise.name}
+						</TableDataWrapper>
+						<TableDataWrapper>
+							{this.state.exercise.sets}
+						</TableDataWrapper>
+						<TableDataWrapper>
+							{this.state.exercise.reps}
+						</TableDataWrapper>
+						<TableDataWrapper>
+							{this.state.exercise.weight}
+						</TableDataWrapper>
+						<TableDataWrapper />
+						<TableDataWrapper>
 							<button onClick={this.handleEdit}>Edit</button>
 							<button onClick={this.deleteExercise}>
 								Delete
 							</button>
-						</div>
-					</div>
+						</TableDataWrapper>
+					</Fragment>
 				) : (
-					<div>
+					<Fragment>
 						<input
 							type="text"
 							name="name"
@@ -96,9 +102,9 @@ class Exercise extends Component {
 							Update exercise
 						</button>
 						<button onClick={this.handleEdit}>Cancel</button>
-					</div>
+					</Fragment>
 				)}
-			</div>
+			</TableRowWrapper>
 		);
 	}
 }

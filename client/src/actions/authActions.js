@@ -26,8 +26,8 @@ export const registerUser = creds => dispatch => {
 	const { firstName, lastName, username, email, password } = creds;
 
 	const newUser = {
-		first_name: firstName,
-		last_name: lastName,
+		firstName,
+		lastName,
 		username,
 		email,
 		password

@@ -84,9 +84,10 @@ export const fetchWorkouts = () => dispatch => {
 			});
 		})
 		.catch(err => {
+			console.log(err.response);
 			dispatch({
 				type: FETCH_WORKOUTS_FAILURE,
-				payload: err.response.data.message
+				payload: err
 			});
 		});
 };

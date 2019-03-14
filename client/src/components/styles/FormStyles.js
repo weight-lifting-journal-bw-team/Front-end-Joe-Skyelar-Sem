@@ -38,21 +38,19 @@ export const FormInput = styled.input`
 `;
 
 export const FormButton = styled.button`
-	width: 130px;
-	height: 45px;
-	font-size: 1.6rem;
-	font-weight: 500;
-	border-radius: 10px;
-	border: 1px solid #594eec;
-	color: #594eec;
-	background: transparent;
-	transition: 0.2s ease-in-out;
-	cursor: pointer;
-	margin: 20px 0;
+	width: 150px;
+	height: 50px;
+	background: #594eec;
+	border-radius: 50px;
+	border: none;
+	color: #ffffff;
+	font-weight: bold;
+	margin-top: 25px;
+	outline: none;
 
-	&:hover {
-		background: #594eec;
-		color: white;
+	&:disabled {
+		background: #847cf1;
+		color: e6e6e6;
 	}
 `;
 
@@ -61,4 +59,42 @@ export const FormTitle = styled.h1`
 	color: black;
 	font-weight: normal;
 	margin: 25px 0;
+`;
+
+export const UnderlineFormInput = styled.input`
+	border: none;
+	border-bottom: 1px solid black;
+	padding: 5px 10px;
+	outline: none;
+`;
+
+export const SolidRoundBtn = styled.button`
+	width: 80px;
+	height: 40px;
+	border: none;
+	border-radius: 5px;
+	background: #594eec;
+	color: white;
+	font-size: 16px;
+	margin: 0 4px;
+	outline: none;
+`;
+
+export const RoundBtn = styled.button`
+	width: 80px;
+	height: 40px;
+	border: none;
+	border-radius: 5px;
+	background: transparent;
+	color: #594eec;
+	border: 1px solid #594eec;
+	font-size: 16px;
+	margin: 0 4px;
+	outline: none;
+	transition: 0.2s ease-in-out;
+
+	&:hover {
+		color: white;
+		background: #594eec;
+	}
 `;
