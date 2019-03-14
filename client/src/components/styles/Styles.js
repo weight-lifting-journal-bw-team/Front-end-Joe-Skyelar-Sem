@@ -10,6 +10,10 @@ export const Styles = css`
 		font-size: 62.5%;
 		background: #f4f7f6;
 	}
+	::selection {
+		background-color: #594EEC;
+		color: white;
+	}
 	h1,
 	h2,
 	h3,

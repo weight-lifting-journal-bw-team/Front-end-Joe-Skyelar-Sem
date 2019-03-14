@@ -83,6 +83,9 @@ export default (state = initialState, action) => {
 				return updatedExercise.push(newExercise);
 			});
 
+			// let check = state.exercises.map(exercise => exercise.workout_id !== action.payload.workout_id ? exercise : action.payload)
+			// console.log(`check: ${check}`)
+
 			return {
 				...state,
 				exercises: [...updatedExercise],

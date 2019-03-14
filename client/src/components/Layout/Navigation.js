@@ -3,7 +3,12 @@ import { connect } from "react-redux";
 
 import { toggleWorkoutModal } from "../../actions/workoutActions";
 
-import { NavBarWrapper } from "./LayoutStyles";
+import {
+  NavBarWrapper,
+  AddWorkoutButton,
+  ProfileWrapper,
+  DropDownWrapper,
+ItemWrapper } from "./LayoutStyles";
 
 class Navigation extends Component {
 	state = {
@@ -24,19 +29,23 @@ class Navigation extends Component {
 	render() {
 		return (
 			<NavBarWrapper>
-				<button onClick={this.props.toggleWorkoutModal}>
-					Add Exercise
-				</button>
-				<div className="dropdown" onClick={this.handleDropdown}>
-					<img alt="profile-pic" />
-					<h1>Welcome name</h1>
+				<AddWorkoutButton onClick={this.props.toggleWorkoutModal}>
+					ADD WORKOUT
+				</AddWorkoutButton>
+				<ProfileWrapper 
+				onClick={this.handleDropdown}>
+					<img 
+					alt="profile-pic"
+					src="https://ca.slack-edge.com/T4JUEB3ME-UD6GGPEHM-ced775b40a2d-72" 
+					/>
+					<h1>Welcome, <span>Joe</span></h1>
 					{this.state.dropdownActive && (
-						<div className="dropdown-content">
-							<h2>Profile</h2>
-							<h2 onClick={this.handleLogout}>Logout</h2>
-						</div>
+						<DropDownWrapper>
+							<ItemWrapper>Profile</ItemWrapper>
+							<ItemWrapper className="logout" onClick={this.handleLogout}>Logout</ItemWrapper>
+						</DropDownWrapper>
 					)}
-				</div>
+				</ProfileWrapper>
 			</NavBarWrapper>
 		);
 	}

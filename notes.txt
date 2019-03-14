@@ -1,0 +1,18 @@
+PSEUDO CODE
+
+// Add Workout Modal
+
+1. User clicks on Add Workout Button
+2. Modal opens and user is shown a workout form component (journal)
+3. User fills form component out, and then can Submit Workout
+
+-- ON SUCCESS (200 OK) --
+4. Modal component switches from workout form component to add exercise form component
+5. User fills form component out (a single exercise)
+6. When user submits each exercise, a list of exercises that have been added will appear above
+6b. Each exercise in the list will have update and delete functionality
+7. User will submit exercises to workout (btn text "Add workout")
+
+// Workouts list
+
+// Workout
