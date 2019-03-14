@@ -10,10 +10,19 @@ import {
 // Components
 import AddExercise from "../Exercises/AddExercise"
 
+// Styles
+import {
+  WorkoutInput,
+  AddExerciseButton
+} from './WorkoutStyles'
+
 const modalStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.25)'
+  },
 	content: {
-		width: '500px',
-		height: '800px',
+		width: '350px',
+		height: '450px',
 		margin: '0 auto'
 	}
 }
@@ -50,8 +59,11 @@ class AddWorkout extends Component {
   };
 
   handleCloseModal = () => {
-	this.props.toggleWorkoutModal()
-	  this.props.toggleAddWorkoutForm()
+    this.props.toggleWorkoutModal()
+    
+    if (this.props.toggleAddExerciseValue) {
+      this.props.toggleAddWorkoutForm()
+    }
   }
 
 	render() {
@@ -62,20 +74,18 @@ class AddWorkout extends Component {
           onRequestClose={this.handleCloseModal}
           style={modalStyles}
         >
-			{!this.props.toggleAddExerciseValue ? (
+          {!this.props.toggleAddExerciseValue ? (
             <div>
               <h1>Add Workout</h1>
               <form onSubmit={this.addWorkout}>
-                <input
+                <WorkoutInput
                   type="text"
                   value={this.state.workout.region}
                   name="region"
                   placeholder="Body Region"
                   onChange={this.handleChanges}
                 />
-				<button type="submit">
-                  Add Exercise
-                </button>
+                <AddExerciseButton type="submit">Add Exercise</AddExerciseButton>
               </form>
             </div>
           ) : (

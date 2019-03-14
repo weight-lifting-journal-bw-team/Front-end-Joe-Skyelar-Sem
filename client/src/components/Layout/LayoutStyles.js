@@ -17,7 +17,8 @@ export const AddWorkoutButton = styled.button`
     transition: 0.2s ease-in-out;
     border-radius: 10px;
     margin-left: 25px; 
-    /* Review */
+    cursor: pointer;
+    outline: none;
 
     &:hover {
         background: #594EEC;
@@ -36,7 +37,6 @@ export const ProfileWrapper = styled.div`
         height: 50px;
         object-fit: cover;
         margin: 0 10px;
-        /* Review */
     }
 
     h1 {
