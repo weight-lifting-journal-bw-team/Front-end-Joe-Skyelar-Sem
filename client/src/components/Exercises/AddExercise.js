@@ -1,96 +1,117 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import ExerciseList from "./ExerciseList"
+import ExerciseList from "./ExerciseList";
 
-import {addExercise} from '../../actions/exerciseActions'
+import {
+	FormInput,
+	FormButton,
+	FormTitle,
+	FormWrapper,
+	FormInputWrapper,
+	FormInputLabel
+} from "../styles/FormStyles";
+
+import { addExercise } from "../../actions/exerciseActions";
 
 class AddExercise extends Component {
-    state = {
-        exercise: {
-            name: "",
-            reps: "",
-            sets: "",
-            weight: ""
-        }
-    }
+	state = {
+		exercise: {
+			name: "",
+			reps: "",
+			sets: "",
+			weight: ""
+		}
+	};
 
-    handleChanges = e => {
-        this.setState({
-            exercise: {
-                ...this.state.exercise,
-                [e.target.name]: e.target.value
-            }
-        });
-    };
+	handleChanges = e => {
+		this.setState({
+			exercise: {
+				...this.state.exercise,
+				[e.target.name]: e.target.value
+			}
+		});
+	};
 
-    handleAddExercise = e => {
-        e.preventDefault()
+	handleAddExercise = e => {
+		e.preventDefault();
 
-        this.props.addExercise(this.state.exercise, this.props.workoutId);
+		this.props.addExercise(this.state.exercise, this.props.workoutId);
 
-        this.setState({
-            exercise: {
-                ...this.state.exercise,
-                name: "",
-                reps: "",
-                sets: "",
-                weight: ""
-            }
-        })
-    }
-    
-  render() {
-    return (
-      <div>
-      <h1>Add exercise to workout</h1>
-        <ExerciseList />
-        <form onSubmit={this.handleAddExercise}>
-            <input 
-                name="name"
-                value={this.state.exercise.name}
-                placeholder="Name"
-                onChange={this.handleChanges} 
-            />
-            <input 
-                type="number"
-                name="reps"
-                value={this.state.exercise.reps}
-                placeholder="Reps" 
-                onChange={this.handleChanges}
-            />
-            <input 
-                name="sets"
-                type="number"
-                value={this.state.exercise.sets} 
-                placeholder="Sets" 
-                onChange={this.handleChanges}
-            />
-            <input 
-                name="weight"
-                value={this.state.exercise.weight}
-                placeholder="Weight" 
-                onChange={this.handleChanges}
-            />
-            <button type="submit">Add Exercise</button>
-            {/* 
+		this.setState({
+			exercise: {
+				...this.state.exercise,
+				name: "",
+				reps: "",
+				sets: "",
+				weight: ""
+			}
+		});
+	};
+
+	render() {
+		return (
+			<FormWrapper>
+				<FormTitle>Add exercise to workout</FormTitle>
+				<ExerciseList />
+				<form onSubmit={this.handleAddExercise}>
+					<FormInputWrapper>
+						<FormInputLabel>Exercise name:</FormInputLabel>
+						<FormInput
+							name="name"
+							value={this.state.exercise.name}
+							placeholder="Deadlift"
+							onChange={this.handleChanges}
+						/>
+					</FormInputWrapper>
+					<FormInputWrapper>
+						<FormInputLabel>Sets:</FormInputLabel>
+						<FormInput
+							name="sets"
+							type="number"
+							value={this.state.exercise.sets}
+							placeholder="25"
+							onChange={this.handleChanges}
+						/>
+					</FormInputWrapper>
+					<FormInputWrapper>
+						<FormInputLabel>Reps:</FormInputLabel>
+						<FormInput
+							type="number"
+							name="reps"
+							value={this.state.exercise.reps}
+							placeholder="10"
+							onChange={this.handleChanges}
+						/>
+					</FormInputWrapper>
+					<FormInputWrapper>
+						<FormInputLabel>Max Weight:</FormInputLabel>
+						<FormInput
+							name="weight"
+							value={this.state.exercise.weight}
+							placeholder="450 lbs"
+							onChange={this.handleChanges}
+						/>
+					</FormInputWrapper>
+					<FormButton type="submit">Add Exercise</FormButton>
+					{/*
                 On submit exercise will be added to journal by id
                 and added to a list of exercises
                 current component sate will reset allowing user to add in a new exercise
             */}
-        </form>
-      </div>
-    )
-  }
+				</form>
+			</FormWrapper>
+		);
+	}
 }
 
 const mapStateToProps = ({ workoutReducer, exerciseReducer }) => {
-    return {
-        workoutId: workoutReducer.workoutId
-    }
-}
+	return {
+		workoutId: workoutReducer.workoutId
+	};
+};
 
 export default connect(
-    mapStateToProps,
-    { addExercise }
+	mapStateToProps,
+	{ addExercise }
 )(AddExercise);

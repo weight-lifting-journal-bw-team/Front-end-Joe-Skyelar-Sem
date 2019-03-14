@@ -11,13 +11,14 @@ export const Styles = css`
 		background: #f4f7f6;
 	}
 	::selection {
-		background-color: #594EEC;
+		background-color: #594eec;
 		color: white;
 	}
 	h1,
 	h2,
 	h3,
-	h4 {
+	h4,
+	label {
 		font-family: "Roboto", sans-serif;
 	}
 	p {

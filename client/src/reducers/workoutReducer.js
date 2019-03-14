@@ -1,7 +1,7 @@
 import {
     TOGGLE_WORKOUT_MODAL,
     TOGGLE_ADD_WORKOUT_FORM,
-    
+
     ADD_WORKOUT_START,
     ADD_WORKOUT_SUCCESS,
     ADD_WORKOUT_FAILURE,
@@ -30,12 +30,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch(action.type) {
-        case TOGGLE_WORKOUT_MODAL:         
+        case TOGGLE_WORKOUT_MODAL:
             return {
                 ...state,
-                toggleWorkoutModal: !state.toggleWorkoutModal                
+                toggleWorkoutModal: !state.toggleWorkoutModal
             }
-        
+
         case TOGGLE_ADD_WORKOUT_FORM:
             return {
                 ...state,
@@ -48,9 +48,8 @@ export default (state = initialState, action) => {
                 fetching: true,
                 errors: null
             }
-            
+
         case ADD_WORKOUT_SUCCESS:
-        console.log(action.payload)
             return {
               ...state,
               workouts: [action.payload],
@@ -58,35 +57,35 @@ export default (state = initialState, action) => {
               fetching: false,
               errors: null
             };
-            
+
         case ADD_WORKOUT_FAILURE:
-            return {
-                ...state,
-                fetching: false,
-                errors: action.payload        
-            } 
-            
-        case FETCH_WORKOUTS_START:
-            return {
-                ...state,
-                fetching: true,
-                errors: null
-            }    
-        
-        case FETCH_WORKOUTS_SUCCESS:
-            return {
-                ...state,
-                fetching: false,
-                errors: null
-            }    
-        
-        case FETCH_WORKOUTS_FAILURE:    
             return {
                 ...state,
                 fetching: false,
                 errors: action.payload
             }
-        
+
+        case FETCH_WORKOUTS_START:
+            return {
+                ...state,
+                fetching: true,
+                errors: null
+            }
+
+        case FETCH_WORKOUTS_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                errors: null
+            }
+
+        case FETCH_WORKOUTS_FAILURE:
+            return {
+                ...state,
+                fetching: false,
+                errors: action.payload
+            }
+
         case UPDATE_WORKOUT_START:
             return {
                 ...state,
@@ -99,37 +98,37 @@ export default (state = initialState, action) => {
                 ...state,
                 fetching: false,
                 errors: null
-            }   
-            
+            }
+
         case UPDATE_WORKOUT_FAILURE:
             return {
                 ...state,
                 fetching: false,
                 errors: action.payload
             }
-            
+
         case DELETE_WORKOUT_START:
             return {
                 ...state,
                 fetching: true,
                 errors: null
-            }   
-        
+            }
+
         case DELETE_WORKOUT_SUCCESS:
             return {
                 ...state,
                 fetching: false,
                 errors: null
-            }   
-            
+            }
+
         case DELETE_WORKOUT_FAILURE:
             return {
                 ...state,
                 fetching: false,
                 errors: action.payload
-            }    
+            }
 
-        default: 
+        default:
             return state;
     }
 
