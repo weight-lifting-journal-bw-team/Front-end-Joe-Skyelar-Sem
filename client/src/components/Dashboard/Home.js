@@ -6,15 +6,17 @@ import { fetchWorkouts } from "../../actions/workoutActions";
 // Layout components
 import Navigation from "../Layout/Navigation";
 import WorkoutsList from "../Workouts/WorkoutsList";
+import ProgressChart from "./ProgressChart";
 
 import AddWorkout from "../Workouts/AddWorkout";
 
 import {
 	HomeBodyWrapper,
 	StatsBarWrapper,
-	StatContainer,
 	ChartContainer
 } from "./DashboardStyles";
+
+import QuickStats from "./QuickStats";
 
 class Home extends Component {
 	componentDidUpdate = () => {
@@ -26,14 +28,13 @@ class Home extends Component {
 			<div>
 				<Navigation history={this.props.history} />
 				<StatsBarWrapper>
-					<StatContainer />
-					<StatContainer />
-					<StatContainer />
-					<StatContainer />
+					<QuickStats />
 				</StatsBarWrapper>
 				<HomeBodyWrapper>
 					<div className="left">
-						<ChartContainer />
+						<ChartContainer>
+							<ProgressChart />
+						</ChartContainer>
 					</div>
 					<AddWorkout />
 					<div className="right">
