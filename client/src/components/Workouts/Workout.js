@@ -1,11 +1,18 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { deleteExercise, updateExercise } from "../../actions/exerciseActions";
+import { deleteWorkout } from "../../actions/workoutActions";
+
+import { WorkoutWrapper, DropDownWrapper } from "./WorkoutStyles";
+
+import ExerciseList from "../Exercises/ExerciseList";
 
 class Workout extends Component {
 	state = {
 		workoutToggle: false,
-		editExercise: false
+		editingWorkout: false,
+		workout: {
+			region: this.props.region
+		}
 	};
 
 	toggleWorkout = () => {
@@ -14,10 +21,11 @@ class Workout extends Component {
 		});
 	};
 
-	editExercise = e => {
-		this.setState({
-			editExercise: !this.state.editExercise
-		});
+	// updateWorkout
+
+	deleteWorkout = e => {
+		e.preventDefault();
+		this.props.deleteWorkout(this.props.id);
 	};
 
 	handleChanges = e => {
@@ -38,10 +46,23 @@ class Workout extends Component {
 					<ExerciseList />
 						<Exercise />
 				*/}
-				<div onClick={this.toggleWorkout}>
-					<h1>{this.props.region}</h1>
-					{this.state.workoutToggle && <div>Exercises</div>}
-				</div>
+				<WorkoutWrapper>
+					{/* {editingWorkout ? } */}
+					<div onClick={this.toggleWorkout}>
+						<h1>{this.props.region}</h1>
+					</div>
+					<div>
+						<button>Update Workout</button>
+						<button onClick={this.deleteWorkout}>
+							Delete Workout
+						</button>
+					</div>
+				</WorkoutWrapper>
+				{this.state.workoutToggle && (
+					<DropDownWrapper>
+						<ExerciseList workoutId={this.props.id} />
+					</DropDownWrapper>
+				)}
 			</Fragment>
 		);
 	}
@@ -49,5 +70,5 @@ class Workout extends Component {
 
 export default connect(
 	null,
-	{}
+	{ deleteWorkout }
 )(Workout);

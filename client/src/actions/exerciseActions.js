@@ -71,7 +71,7 @@ export const fetchExercises = journalId => dispatch => {
 		.then(res => {
 			dispatch({
 				type: FETCH_EXERCISES_SUCCESS,
-				payload: res.data.exercise
+				payload: res.data.exercises
 			});
 		})
 		.catch(err => {

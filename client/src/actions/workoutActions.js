@@ -9,7 +9,10 @@ import {
 	ADD_WORKOUT_FAILURE,
 	FETCH_WORKOUTS_START,
 	FETCH_WORKOUTS_SUCCESS,
-	FETCH_WORKOUTS_FAILURE
+	FETCH_WORKOUTS_FAILURE,
+	DELETE_WORKOUT_START,
+	DELETE_WORKOUT_SUCCESS,
+	DELETE_WORKOUT_FAILURE
 } from "./index";
 
 export const toggleWorkoutModal = () => dispatch => {
@@ -72,7 +75,6 @@ export const fetchWorkouts = () => dispatch => {
 			}
 		)
 		.then(res => {
-			console.log(res.data.journals);
 			dispatch({
 				type: FETCH_WORKOUTS_SUCCESS,
 				payload: res.data.journals
@@ -87,6 +89,29 @@ export const fetchWorkouts = () => dispatch => {
 //
 // }
 
-// export const deleteWorkout = workout => dispatch => {
-//
-// }
+export const deleteWorkout = workoutId => dispatch => {
+	dispatch({
+		type: DELETE_WORKOUT_START
+	});
+
+	axios
+		.delete(
+			`https://weight-lifting-journal.herokuapp.com/api/restricted/journals/${workoutId}`,
+			{
+				"Content-Type": "application/json",
+				headers: { authorization: localStorage.getItem("token") }
+			}
+		)
+		.then(res => {
+			dispatch({
+				type: DELETE_WORKOUT_SUCCESS,
+				payload: workoutId
+			});
+		})
+		.catch(err => {
+			dispatch({
+				type: DELETE_WORKOUT_FAILURE,
+				payload: err.response.data.message
+			});
+		});
+};

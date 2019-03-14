@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
 		case ADD_WORKOUT_SUCCESS:
 			return {
 				...state,
-				workouts: [action.payload],
+				workouts: [...state.workouts, action.payload],
 				workoutId: action.payload.id,
 				fetching: false,
 				errors: null
@@ -115,6 +115,9 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				fetching: false,
+				workouts: state.workouts.filter(
+					workout => workout.id !== action.payload
+				),
 				errors: null
 			};
 

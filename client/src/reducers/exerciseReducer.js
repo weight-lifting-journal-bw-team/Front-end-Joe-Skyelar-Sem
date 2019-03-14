@@ -5,12 +5,12 @@ import {
 	FETCH_EXERCISES_START,
 	FETCH_EXERCISES_SUCCESS,
 	FETCH_EXERCISES_FAILURE,
-	UPDATE_EXERCISES_START,
-	UPDATE_EXERCISES_SUCCESS,
-	UPDATE_EXERCISES_FAILURE,
-	DELETE_EXERCISES_START,
-	DELETE_EXERCISES_SUCCESS,
-	DELETE_EXERCISES_FAILURE
+	UPDATE_EXERCISE_START,
+	UPDATE_EXERCISE_SUCCESS,
+	UPDATE_EXERCISE_FAILURE,
+	DELETE_EXERCISE_START,
+	DELETE_EXERCISE_SUCCESS,
+	DELETE_EXERCISE_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -64,14 +64,14 @@ export default (state = initialState, action) => {
 				fetching: false,
 				errors: action.payload
 			};
-		case UPDATE_EXERCISES_START:
+		case UPDATE_EXERCISE_START:
 			return {
 				...state,
 				fetching: true,
 				errors: null
 			};
 
-		case UPDATE_EXERCISES_SUCCESS:
+		case UPDATE_EXERCISE_SUCCESS:
 			let updatedExercise = [];
 
 			state.exercises.map(exercise => {
@@ -93,20 +93,20 @@ export default (state = initialState, action) => {
 				errors: null
 			};
 
-		case UPDATE_EXERCISES_FAILURE:
+		case UPDATE_EXERCISE_FAILURE:
 			return {
 				...state,
 				fetching: false,
 				errors: action.payload
 			};
-		case DELETE_EXERCISES_START:
+		case DELETE_EXERCISE_START:
 			return {
 				...state,
 				fetching: true,
 				errors: null
 			};
 
-		case DELETE_EXERCISES_SUCCESS:
+		case DELETE_EXERCISE_SUCCESS:
 			return {
 				...state,
 				exercises: [
@@ -118,7 +118,7 @@ export default (state = initialState, action) => {
 				errors: null
 			};
 
-		case DELETE_EXERCISES_FAILURE:
+		case DELETE_EXERCISE_FAILURE:
 			return {
 				...state,
 				fetching: false,
