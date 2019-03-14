@@ -8,13 +8,15 @@ import { persistUser } from "../../actions/authActions";
 
 class PrivateRoute extends Component {
 	componentDidMount() {
-		const token = localStorage.getItem("token").toString();
-		const decoded = jwtdecode(token);
+		if (localStorage.getItem("token")) {
+			const token = localStorage.getItem("token").toString();
+			const decoded = jwtdecode(token);
 
-		if (Date.now() / 1000 > decoded.exp) {
-			return localStorage.removeItem("token");
+			if (Date.now() / 1000 > decoded.exp) {
+				return localStorage.removeItem("token");
+			}
+			return this.props.persistUser(decoded.subject);
 		}
-		return this.props.persistUser(decoded.subject);
 	}
 
 	render() {
