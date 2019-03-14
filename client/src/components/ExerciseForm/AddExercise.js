@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import ExerciseList from "./ExerciseList";
+import ExerciseList from "./FormExerciseList";
 
 import {
 	FormInput,
