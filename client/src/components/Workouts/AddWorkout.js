@@ -8,7 +8,7 @@ import {
 } from "../../actions/workoutActions";
 
 // Components
-import AddExercise from "../Exercises/AddExercise";
+import AddExercise from "../ExerciseForm/AddExercise";
 
 // Styles
 import {
@@ -49,7 +49,7 @@ class AddWorkout extends Component {
 	addWorkout = e => {
 		e.preventDefault();
 
-		this.props.addWorkout(this.state.workout);
+		this.props.addWorkout(this.state.workout, this.props.userId);
 
 		this.props.toggleAddWorkoutForm();
 
@@ -106,9 +106,10 @@ class AddWorkout extends Component {
 		);
 	}
 }
-const mapStateToProps = ({ workoutReducer }) => ({
+const mapStateToProps = ({ workoutReducer, authReducer }) => ({
 	toggleModalWorkoutValue: workoutReducer.toggleWorkoutModal,
-	toggleAddExerciseValue: workoutReducer.addExercise
+	toggleAddExerciseValue: workoutReducer.addExercise,
+	userId: authReducer.currentUser
 });
 export default connect(
 	mapStateToProps,

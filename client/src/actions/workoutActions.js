@@ -24,7 +24,7 @@ export const toggleAddWorkoutForm = () => dispatch => {
 	});
 };
 
-export const addWorkout = workout => dispatch => {
+export const addWorkout = (workout, userId) => dispatch => {
 	dispatch({
 		type: ADD_WORKOUT_START
 	});
@@ -32,7 +32,7 @@ export const addWorkout = workout => dispatch => {
 	const newWorkout = {
 		date: Date.now().toString(),
 		region: workout.region,
-		userId: 1
+		userId
 	};
 
 	axios

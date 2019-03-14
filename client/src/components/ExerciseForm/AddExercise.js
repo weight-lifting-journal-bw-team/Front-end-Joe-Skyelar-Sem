@@ -36,7 +36,11 @@ class AddExercise extends Component {
 	handleAddExercise = e => {
 		e.preventDefault();
 
-		this.props.addExercise(this.state.exercise, this.props.workoutId);
+		this.props.addExercise(
+			this.state.exercise,
+			this.props.workoutId,
+			this.props.userId
+		);
 
 		this.setState({
 			exercise: {
@@ -105,9 +109,10 @@ class AddExercise extends Component {
 	}
 }
 
-const mapStateToProps = ({ workoutReducer, exerciseReducer }) => {
+const mapStateToProps = ({ workoutReducer, authReducer }) => {
 	return {
-		workoutId: workoutReducer.workoutId
+		workoutId: workoutReducer.workoutId,
+		userId: authReducer.currentUser
 	};
 };
 

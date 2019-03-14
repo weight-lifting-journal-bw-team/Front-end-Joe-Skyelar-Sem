@@ -3,41 +3,33 @@ import axios from "axios";
 import {
 	ADD_EXERCISE_START,
 	ADD_EXERCISE_SUCCESS,
-  	ADD_EXERCISE_FAILURE,
-  
+	ADD_EXERCISE_FAILURE,
 	FETCH_EXERCISES_START,
 	FETCH_EXERCISES_SUCCESS,
-  	FETCH_EXERCISES_FAILURE,
-  
+	FETCH_EXERCISES_FAILURE,
 	UPDATE_EXERCISES_START,
 	UPDATE_EXERCISES_SUCCESS,
-  	UPDATE_EXERCISES_FAILURE,
-  
+	UPDATE_EXERCISES_FAILURE,
 	DELETE_EXERCISES_START,
 	DELETE_EXERCISES_SUCCESS,
 	DELETE_EXERCISES_FAILURE
 } from "./index";
 
-export const addExercise = (exercise, journalId) => dispatch => {
-	dispatch({ 
-		type: ADD_EXERCISE_START 
+export const addExercise = (exercise, journalId, userId) => dispatch => {
+	dispatch({
+		type: ADD_EXERCISE_START
 	});
 
-	const {
-		name, 
-		reps, 
-		sets, 
-		weight
-	} = exercise
+	const { name, reps, sets, weight } = exercise;
 
 	const newExercise = {
 		journalId,
-		userId: 1,
+		userId,
 		name,
 		reps,
 		sets,
 		weight
-	}
+	};
 
 	axios
 		.post(
@@ -49,9 +41,9 @@ export const addExercise = (exercise, journalId) => dispatch => {
 			}
 		)
 		.then(res => {
-			console.log(res.data)
-			dispatch({ 
-				type: ADD_EXERCISE_SUCCESS, 
+			console.log(res.data);
+			dispatch({
+				type: ADD_EXERCISE_SUCCESS,
 				payload: res.data.exercise
 			});
 		})
@@ -122,7 +114,7 @@ export const fetchExercises = journalId => dispatch => {
 //     body_region: null,
 //     user_id: 1
 //   };
-  
+
 //   console.log(updateExercise)
 
 // 	axios
@@ -176,4 +168,3 @@ export const fetchExercises = journalId => dispatch => {
 // 			});
 // 		});
 // };
-

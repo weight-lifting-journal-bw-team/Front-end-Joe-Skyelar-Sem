@@ -13,7 +13,9 @@ class WorkoutsList extends Component {
 		return (
 			<div>
 				{this.props.workouts.map(workout =>
-					workout.userId === 1 ? <Workout {...workout} /> : null
+					workout.userId === 1 ? (
+						<Workout key={workout.id} {...workout} />
+					) : null
 				)}
 			</div>
 		);

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 // Layout components
 import Navigation from "../Layout/Navigation";
@@ -21,4 +22,7 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+export default connect(
+	null,
+	{}
+)(Home);
