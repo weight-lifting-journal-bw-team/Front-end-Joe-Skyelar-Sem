@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { fetchWorkouts } from "../../actions/workoutActions";
+
 // Layout components
 import Navigation from "../Layout/Navigation";
 import WorkoutsList from "../Workouts/WorkoutsList";
@@ -15,6 +17,10 @@ import {
 } from "./DashboardStyles";
 
 class Home extends Component {
+	componentDidUpdate = () => {
+		this.props.fetchWorkouts(this.props.userId);
+	};
+
 	render() {
 		return (
 			<div>
@@ -39,7 +45,11 @@ class Home extends Component {
 	}
 }
 
+const mapStateToProps = ({ authReducer }) => ({
+	userId: authReducer.currentUser
+});
+
 export default connect(
-	null,
-	{}
+	mapStateToProps,
+	{ fetchWorkouts }
 )(Home);

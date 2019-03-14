@@ -97,9 +97,8 @@ class InlineAddExercise extends Component {
 	}
 }
 
-const mapStateToProps = ({ workoutReducer, authReducer }) => {
+const mapStateToProps = ({ authReducer }) => {
 	return {
-		workoutId: workoutReducer.workoutId,
 		userId: authReducer.currentUser
 	};
 };

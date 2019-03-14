@@ -4,11 +4,12 @@ export const HomeBodyWrapper = styled.div`
 	display: flex;
 	justify-content: space-evenly;
 	width: 100%;
+	padding-top: 75px;
 `;
 
 export const StatsBarWrapper = styled.div`
 	width: 100%;
-	height: 100px;
+	height: 150px;
 	padding: 0 50px;
 	border: 1px dashed blue;
 	display: flex;
@@ -18,7 +19,7 @@ export const StatContainer = styled.div`
 	width: 25%;
 	margin: 0 10px;
 	border: 1px solid black;
-	height: 100px;
+	height: 150px;
 	border-radius: 10px;
 `;
 

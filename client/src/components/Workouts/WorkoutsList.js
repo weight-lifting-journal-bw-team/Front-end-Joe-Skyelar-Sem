@@ -7,18 +7,12 @@ import { WorkoutsListWrapper } from "./WorkoutStyles";
 import { fetchWorkouts } from "../../actions/workoutActions";
 
 class WorkoutsList extends Component {
-	componentDidMount() {
-		this.props.fetchWorkouts();
-	}
-
 	render() {
 		return (
 			<WorkoutsListWrapper>
-				{this.props.workouts.map(workout =>
-					workout.userId === 1 ? (
-						<Workout key={workout.id} {...workout} />
-					) : null
-				)}
+				{this.props.workouts.map(workout => (
+					<Workout key={workout.id} {...workout} />
+				))}
 			</WorkoutsListWrapper>
 		);
 	}
@@ -30,5 +24,5 @@ const mapStateToProps = ({ workoutReducer }) => ({
 
 export default connect(
 	mapStateToProps,
-	{ fetchWorkouts }
+	{}
 )(WorkoutsList);

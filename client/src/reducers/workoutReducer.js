@@ -12,7 +12,10 @@ import {
 	UPDATE_WORKOUT_FAILURE,
 	DELETE_WORKOUT_START,
 	DELETE_WORKOUT_SUCCESS,
-	DELETE_WORKOUT_FAILURE
+	DELETE_WORKOUT_FAILURE,
+	ADD_EXERCISE_START,
+	ADD_EXERCISE_SUCCESS,
+	ADD_EXERCISE_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -46,9 +49,15 @@ export default (state = initialState, action) => {
 			};
 
 		case ADD_WORKOUT_SUCCESS:
+			const addWorkoutSorted = [...state.workouts, action.payload].sort(
+				(a, b) => {
+					return b.date - a.date;
+				}
+			);
+
 			return {
 				...state,
-				workouts: [...state.workouts, action.payload],
+				workouts: addWorkoutSorted,
 				workoutId: action.payload.id,
 				fetching: false,
 				errors: null
@@ -129,6 +138,49 @@ export default (state = initialState, action) => {
 				...state,
 				fetching: false,
 				errors: action.payload
+			};
+
+		case ADD_EXERCISE_START:
+			return {
+				...state,
+				fetching: true,
+				errors: null
+			};
+		case ADD_EXERCISE_SUCCESS:
+			// Filter out all workouts that aren't equal to the workout of the newly created exercise
+			const notChanged = state.workouts.filter(
+				workout => workout.id !== action.payload.journalId
+			);
+
+			// filter out recently added exercise
+			const changed = state.workouts.filter(
+				workout => workout.id === action.payload.journalId
+			);
+
+			// oldExercises represents the exercises array on the workout being changed
+			const oldExercises = changed[0].exercises;
+
+			// newExercise represents the new exercise object that we added
+			// we need to add this object to the oldExercises array
+			const newExercise = action.payload;
+
+			// we use completeExercises to stitch together the existing exercises and the new exercise
+			const completeExercises = [...oldExercises, newExercise];
+
+			// we replaced the exercises array o the changed wkout with completeExercisesg
+			changed[0].exercises = completeExercises;
+
+			// we use completeWorkout to stitch together all the unchanged workouts with our new changed workout that has an updated exercises array
+			const completeWorkout = [...notChanged, ...changed];
+
+			// Sort by newest workout
+			const sorted = completeWorkout.sort((a, b) => {
+				return b.date - a.date;
+			});
+
+			return {
+				...state,
+				workouts: sorted
 			};
 
 		default:

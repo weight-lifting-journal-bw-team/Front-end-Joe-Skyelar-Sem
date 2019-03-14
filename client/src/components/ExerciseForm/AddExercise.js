@@ -57,7 +57,6 @@ class AddExercise extends Component {
 		return (
 			<FormWrapper>
 				<FormTitle>Add exercise to workout</FormTitle>
-				<ExerciseList />
 				<form onSubmit={this.handleAddExercise}>
 					<FormInputWrapper>
 						<FormInputLabel>Exercise name:</FormInputLabel>

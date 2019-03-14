@@ -51,9 +51,11 @@ export const addWorkout = (workout, userId) => dispatch => {
 			}
 		)
 		.then(res => {
+			const appendEmptyArray = { ...res.data.journal[0], exercises: [] };
+
 			dispatch({
 				type: ADD_WORKOUT_SUCCESS,
-				payload: res.data.journal[res.data.journal.length - 1]
+				payload: appendEmptyArray
 			});
 		})
 		.catch(err => {
@@ -64,23 +66,27 @@ export const addWorkout = (workout, userId) => dispatch => {
 		});
 };
 
-export const fetchWorkouts = () => dispatch => {
+export const fetchWorkouts = UserId => dispatch => {
 	dispatch({
 		type: FETCH_WORKOUTS_START
 	});
 
 	axios
 		.get(
-			"https://weight-lifting-journal.herokuapp.com/api/restricted/journals/",
+			`https://weight-lifting-journal.herokuapp.com/api/restricted/journals/journals-exercises/${UserId}`,
 			{
 				"Content-Type": "application/json",
 				headers: { authorization: localStorage.getItem("token") }
 			}
 		)
 		.then(res => {
+			const journals = res.data.journals.sort((a, b) => {
+				return b.date - a.date;
+			});
+
 			dispatch({
 				type: FETCH_WORKOUTS_SUCCESS,
-				payload: res.data.journals
+				payload: journals
 			});
 		})
 		.catch(err => {
