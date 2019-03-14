@@ -1,17 +1,35 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import jwtdecode from "jwt-decode";
 
-const PrivateRoute = ({ component: Component, token, ...rest }) => {
-	return (
-		<Route
-			{...rest}
-			render={props =>
-				token ? <Component {...props} /> : <Redirect to="/login" />
-			}
-		/>
-	);
-};
+// action creator
+import { persistUser } from "../../actions/authActions";
+
+class PrivateRoute extends Component {
+	componentDidMount() {
+		const token = localStorage.getItem("token").toString();
+		const decoded = jwtdecode(token);
+
+		if (Date.now() / 1000 > decoded.exp) {
+			return localStorage.removeItem("token");
+		}
+		return this.props.persistUser(decoded.subject);
+	}
+
+	render() {
+		const { component: Component, token, ...rest } = this.props;
+
+		return (
+			<Route
+				{...rest}
+				render={props =>
+					token ? <Component {...props} /> : <Redirect to="/login" />
+				}
+			/>
+		);
+	}
+}
 
 const mapStateToProps = ({ authReducer }) => ({
 	token: authReducer.token
@@ -19,5 +37,5 @@ const mapStateToProps = ({ authReducer }) => ({
 
 export default connect(
 	mapStateToProps,
-	{}
+	{ persistUser }
 )(PrivateRoute);

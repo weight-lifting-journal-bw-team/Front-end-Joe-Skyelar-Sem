@@ -2,32 +2,31 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Workout from "./Workout";
 
-import { fetchExercises } from "../../actions/exerciseActions";
+import { fetchWorkouts } from "../../actions/workoutActions";
 
 class WorkoutsList extends Component {
 	componentDidMount() {
-		this.props.fetchExercises();
+		this.props.fetchWorkouts();
 	}
 
 	render() {
 		return (
 			<div>
-				{this.props.exercises.map((exercise, i) => (
-					<Workout key={exercise.workout_id} {...exercise} />
-				))}
-				{console.log(this.props.exercises)}
+				{this.props.workouts.map(workout =>
+					workout.userId === 1 ? (
+						<Workout key={workout.id} {...workout} />
+					) : null
+				)}
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = ({ exerciseReducer }) => {
-	return {
-		exercises: exerciseReducer.exercises
-	};
-};
+const mapStateToProps = ({ workoutReducer }) => ({
+	workouts: workoutReducer.workouts
+});
 
 export default connect(
 	mapStateToProps,
-	{ fetchExercises }
+	{ fetchWorkouts }
 )(WorkoutsList);

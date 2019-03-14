@@ -1,25 +1,30 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchExercises } from "../../actions/exerciseActions";
+
+import Exercise from "./Exercise";
 
 class ExerciseList extends Component {
+	componentDidMount() {
+		this.props.fetchExercises(this.props.workoutId);
+	}
 
-    render() {
-    return (
-      <div>
-      {this.props.exercises.map(exercise => exercise.journalId === this.props.journalId ? <p key={exercise.journalId}>{exercise.name}</p> : null)}
-      </div>
-    )
-  }
+	render() {
+		return (
+			<div>
+				{this.props.exercises.map(exercise => (
+					<Exercise key={exercise.id} {...exercise} />
+				))}
+			</div>
+		);
+	}
 }
 
-const mapStateToProps = ({exerciseReducer, workoutReducer}) => {
-    return {
-        exercises: exerciseReducer.exercises,
-        journalId: workoutReducer.workoutId
-    }
-}
+const mapStateToProps = ({ exerciseReducer }) => ({
+	exercises: exerciseReducer.exercises
+});
 
 export default connect(
-    mapStateToProps,
-    { }
-)(ExerciseList)
+	mapStateToProps,
+	{ fetchExercises }
+)(ExerciseList);

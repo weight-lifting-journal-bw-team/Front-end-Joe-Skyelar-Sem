@@ -7,8 +7,16 @@ import {
 	REGISTER_USER_FAILURE,
 	LOGIN_USER_START,
 	LOGIN_USER_SUCCESS,
-	LOGIN_USER_FAILURE
+	LOGIN_USER_FAILURE,
+	PERSIST_USER
 } from "./index";
+
+export const persistUser = id => dispatch => {
+	dispatch({
+		type: PERSIST_USER,
+		payload: id
+	});
+};
 
 export const registerUser = creds => dispatch => {
 	dispatch({
