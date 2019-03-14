@@ -93,7 +93,10 @@ class AddWorkout extends Component {
 										onChange={this.handleChanges}
 									/>
 								</FormInputWrapper>
-								<FormButton type="submit">
+								<FormButton
+									type="submit"
+									disabled={!this.state.workout.region}
+								>
 									Add Exercises
 								</FormButton>
 							</form>

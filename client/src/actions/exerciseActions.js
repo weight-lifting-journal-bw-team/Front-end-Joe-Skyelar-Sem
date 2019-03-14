@@ -64,7 +64,6 @@ export const fetchExercises = journalId => dispatch => {
 		.get(
 			`https://weight-lifting-journal.herokuapp.com/api/restricted/exercises/journal/${journalId}`,
 			{
-				"Content-Type": "application/json",
 				headers: { authorization: localStorage.getItem("token") }
 			}
 		)
@@ -75,9 +74,10 @@ export const fetchExercises = journalId => dispatch => {
 			});
 		})
 		.catch(err => {
+			console.log(err);
 			dispatch({
 				type: FETCH_EXERCISES_FAILURE,
-				payload: err.response.data.message
+				payload: err
 			});
 		});
 };
