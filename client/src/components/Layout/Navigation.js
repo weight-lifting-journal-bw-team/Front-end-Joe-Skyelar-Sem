@@ -3,7 +3,12 @@ import { connect } from "react-redux";
 
 import { toggleWorkoutModal } from "../../actions/workoutActions";
 
-import { NavBarWrapper, AddWorkoutButton, ProfileWrapper, DropDownWrapper } from "./LayoutStyles";
+import {
+  NavBarWrapper,
+  AddWorkoutButton,
+  ProfileWrapper,
+  DropDownWrapper,
+ItemWrapper } from "./LayoutStyles";
 
 class Navigation extends Component {
 	state = {
@@ -36,8 +41,8 @@ class Navigation extends Component {
 					<h1>Welcome, <span>Joe</span></h1>
 					{this.state.dropdownActive && (
 						<DropDownWrapper>
-							<h2>Profile</h2>
-							<h2 onClick={this.handleLogout}>Logout</h2>
+							<ItemWrapper>Profile</ItemWrapper>
+							<ItemWrapper className="logout" onClick={this.handleLogout}>Logout</ItemWrapper>
 						</DropDownWrapper>
 					)}
 				</ProfileWrapper>

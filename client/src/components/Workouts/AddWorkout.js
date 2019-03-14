@@ -10,6 +10,14 @@ import {
 // Components
 import AddExercise from "../Exercises/AddExercise"
 
+const modalStyles = {
+	content: {
+		width: '500px',
+		height: '800px',
+		margin: '0 auto'
+	}
+}
+
 class AddWorkout extends Component {
   state = {
     workout: {
@@ -51,7 +59,8 @@ class AddWorkout extends Component {
       <div>
         <WorkoutModal
           isOpen={this.props.toggleModalWorkoutValue}
-		  onRequestClose={this.handleCloseModal}
+          onRequestClose={this.handleCloseModal}
+          style={modalStyles}
         >
 			{!this.props.toggleAddExerciseValue ? (
             <div>

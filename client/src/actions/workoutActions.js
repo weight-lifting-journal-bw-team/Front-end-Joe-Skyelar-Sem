@@ -29,42 +29,44 @@ export const addWorkout = workout => dispatch => {
     });      
         
 
-    const date = Date.now();
-
-    // extract data
-
-    console.log(workout)
-
     const newWorkout = {
-        date: moment(date).format('MMMM Do YYYY'),
-        region: workout.region
+        date: moment(Date.now()).format('MMMM Do YYYY').toString(),
+        region: workout.region,
+        userId: 1
     }
 
-    console.log(newWorkout)
-
-    // axios
-    //     .post('', newWorkout)
-    //     .then(res => {
-    //         console.log(res)
-    //         dispatch({
-    //             type: ADD_WORKOUT_SUCCESS
-    //         })
-    //     })
-    //     .catch(err => {
-    //         console.log(err.response.data.message)
-    //         dispatch({
-    //             type: ADD_WORKOUT_FAILURE,
-    //             payload: err.response.data.message
-    //         })
-    //     })      
+    axios
+        .post('https://weight-lifting-journal.herokuapp.com/api/restricted/journals/', newWorkout,
+        {
+			"Content-Type": "application/json",
+			headers: { authorization: localStorage.getItem("token") }
+		}
+        )
+        .then(res => {
+            dispatch({
+                type: ADD_WORKOUT_SUCCESS,
+                payload: res.data.journal[res.data.journal.length - 1]
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: ADD_WORKOUT_FAILURE,
+                payload: err.response.data.message
+            })
+        })      
 }
 
 // export const editWorkout = workout => dispatch => {
     // 
 // }
     
-// export const fetchWorkouts = workout => dispatch => {
-    // 
+// export const fetchWorkouts = () => dispatch => {
+//     dispatch({
+//         type: FETCH_WORKOUTS_START
+//     });
+
+//     axios
+//         .get()
 // }
 
 // export const deleteWorkout = workout => dispatch => {

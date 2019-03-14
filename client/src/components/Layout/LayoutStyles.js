@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const NavBarWrapper = styled.div`
     display: flex;
     height: 80px;
-    border: 1px solid black;
     align-items: center;
     justify-content: flex-end;
 `
@@ -54,10 +53,36 @@ export const ProfileWrapper = styled.div`
 `
 
 export const DropDownWrapper = styled.div`
-    position: absolute;
-    border: 1px dotted black;
-    border-radius: 5px;
-    top: 55px;
-    right: 55px;
-    /* Review */
-`
+         position: absolute;
+         top: 55px;
+         right: 28px;
+         box-shadow: 0px 0px 74px -3px rgba(0, 0, 0, 0.51);
+
+         &:last-child {
+           border-bottom-left-radius: 10px;
+           border-bottom-right-radius: 10px;
+
+           
+         }
+
+         .logout {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+         }
+       `;
+
+export const ItemWrapper = styled.h2`
+         padding: 10px 30px;
+         transition: 0.2s ease-in-out;
+         font-size: 1.4rem;
+         font-weight: 200;
+         box-shadow: 0px 20px 35px -16px rgba(0,0,0,0.72);
+
+
+
+         &:hover {
+           background-color: #594eec;
+           color: white;
+         }
+         
+       `;

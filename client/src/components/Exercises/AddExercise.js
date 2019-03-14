@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
+import ExerciseList from "./ExerciseList"
+
 import {addExercise} from '../../actions/exerciseActions'
 
 class AddExercise extends Component {
@@ -25,7 +27,7 @@ class AddExercise extends Component {
     handleAddExercise = e => {
         e.preventDefault()
 
-        this.props.addExercise(this.state.exercise);
+        this.props.addExercise(this.state.exercise, this.props.workoutId);
 
         this.setState({
             exercise: {
@@ -42,6 +44,7 @@ class AddExercise extends Component {
     return (
       <div>
       <h1>Add exercise to workout</h1>
+        <ExerciseList />
         <form onSubmit={this.handleAddExercise}>
             <input 
                 name="name"
@@ -81,7 +84,13 @@ class AddExercise extends Component {
   }
 }
 
+const mapStateToProps = ({ workoutReducer, exerciseReducer }) => {
+    return {
+        workoutId: workoutReducer.workoutId
+    }
+}
+
 export default connect(
-    null,
+    mapStateToProps,
     { addExercise }
 )(AddExercise);

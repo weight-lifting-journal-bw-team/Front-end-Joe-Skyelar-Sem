@@ -50,13 +50,14 @@ export default (state = initialState, action) => {
             }
             
         case ADD_WORKOUT_SUCCESS:
+        console.log(action.payload)
             return {
-                ...state,
-                workouts: [...state.workouts, action.payload],
-                workoutId: action.payload.journalId,
-                fetching: false,
-                errors: null                
-            }
+              ...state,
+              workouts: [action.payload],
+              workoutId: action.payload.id,
+              fetching: false,
+              errors: null
+            };
             
         case ADD_WORKOUT_FAILURE:
             return {
