@@ -41,7 +41,7 @@ export const addExercise = (exercise, journalId, userId) => dispatch => {
 			}
 		)
 		.then(res => {
-			console.log(res.data);
+			console.log(res.data.exercise);
 			dispatch({
 				type: ADD_EXERCISE_SUCCESS,
 				payload: res.data.exercise

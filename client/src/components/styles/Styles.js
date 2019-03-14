@@ -18,7 +18,8 @@ export const Styles = css`
 	h2,
 	h3,
 	h4,
-	label {
+	label,
+	table {
 		font-family: "Roboto", sans-serif;
 	}
 	p {

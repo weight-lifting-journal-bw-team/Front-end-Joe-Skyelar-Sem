@@ -22,8 +22,13 @@ import ExerciseList from "../Exercises/ExerciseList";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-library.add([faTrashAlt, faPencilAlt]);
+import {
+	faTrashAlt,
+	faPencilAlt,
+	faChevronUp,
+	faChevronDown
+} from "@fortawesome/free-solid-svg-icons";
+library.add([faTrashAlt, faPencilAlt, faChevronUp, faChevronDown]);
 
 class Workout extends Component {
 	state = {
@@ -75,7 +80,15 @@ class Workout extends Component {
 					<WorkoutContainer>
 						<div>
 							<WorkoutRegionHeader onClick={this.toggleWorkout}>
-								{this.state.workout.region}
+								<p>{this.state.workout.region}</p>
+								<FontAwesomeIcon
+									icon={
+										!this.state.workoutToggle
+											? faChevronUp
+											: faChevronDown
+									}
+									style={{ color: "#000" }}
+								/>
 							</WorkoutRegionHeader>
 						</div>
 						<div>
@@ -113,10 +126,12 @@ class Workout extends Component {
 						</div>
 					</WorkoutContainer>
 				)}
-
 				{this.state.workoutToggle && (
 					<DropDownWrapper>
-						<ExerciseList exercises={this.props.exercises} />
+						<ExerciseList
+							exercises={this.props.exercises}
+							workoutId={this.props.id}
+						/>
 					</DropDownWrapper>
 				)}
 			</WorkoutWrapper>
@@ -124,13 +139,7 @@ class Workout extends Component {
 	}
 }
 
-const mapStateToProps = ({ exerciseReducer }) => {
-	return {
-		exercises: exerciseReducer.exercises
-	};
-};
-
 export default connect(
-	mapStateToProps,
+	null,
 	{ deleteWorkout, updateWorkout, fetchExercises }
 )(Workout);

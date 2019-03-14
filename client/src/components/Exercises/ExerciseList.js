@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchExercises } from "../../actions/exerciseActions";
 
 import Exercise from "./Exercise";
 import InlineAddExercise from "./InlineAddExercise";
@@ -12,23 +11,19 @@ import {
 } from "./ExerciseStyles";
 
 class ExerciseList extends Component {
-	// componentDidMount() {
-	// 	this.props.fetchExercises(this.props.workoutId);
-	// }
-
 	render() {
 		return (
 			<TableWrapper>
 				<TableRowWrapper>
-					<TableHeaderWrapper>Name</TableHeaderWrapper>
-					<TableHeaderWrapper>Sets</TableHeaderWrapper>
-					<TableHeaderWrapper>Reps</TableHeaderWrapper>
-					<TableHeaderWrapper>Weight</TableHeaderWrapper>
+					<TableHeaderWrapper>Name:</TableHeaderWrapper>
+					<TableHeaderWrapper>Sets:</TableHeaderWrapper>
+					<TableHeaderWrapper>Reps:</TableHeaderWrapper>
+					<TableHeaderWrapper>Weight:</TableHeaderWrapper>
 				</TableRowWrapper>
 				{this.props.exercises.map(exercise => (
 					<Exercise key={exercise.id} {...exercise} />
 				))}
-				<InlineAddExercise />
+				<InlineAddExercise workoutId={this.props.workoutId} />
 			</TableWrapper>
 		);
 	}

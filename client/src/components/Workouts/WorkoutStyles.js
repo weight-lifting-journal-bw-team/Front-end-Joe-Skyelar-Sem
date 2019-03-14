@@ -25,14 +25,22 @@ export const WorkoutContainer = styled.div`
 	margin-top: 5px;
 `;
 
-export const WorkoutRegionHeader = styled.h1`
-	font-size: 1.6rem;
+export const WorkoutRegionHeader = styled.div`
+	align-items: center;
+	display: flex;
+	cursor: pointer;
+
+	p {
+		font-size: 1.6rem;
+		padding: 0 5px;
+		padding-right: 15px;
+	}
 `;
 
 export const DropDownWrapper = styled.div`
 	width: 100%;
 	height: 100%;
-	border-top: 1px solid green;
+	border-top: 1px solid #f5f5f5;
 `;
 
 export const DeleteButton = styled.button`

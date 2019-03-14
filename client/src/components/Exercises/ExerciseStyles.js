@@ -1,14 +1,24 @@
 import styled from "styled-components";
 
 export const TableWrapper = styled.table`
+	text-align: center;
 	width: 100%;
-	text-align: left;
 `;
 
-export const TableRowWrapper = styled.tr``;
-export const TableHeaderWrapper = styled.th``;
+export const TableRowWrapper = styled.tr`
+	&:nth-child(even) {
+	}
+`;
+export const TableHeaderWrapper = styled.th`
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px 0;
+`;
 
-export const TableDataWrapper = styled.td``;
+export const TableDataWrapper = styled.td`
+	padding: 10px 0;
+	font-size: 16px;
+`;
 
 export const InlineInput = styled.input`
 	width: 140px;
