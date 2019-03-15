@@ -52,11 +52,11 @@ class QuickStats extends Component {
 			<Fragment>
 				<StatsContainer>
 					<h3>Total workouts</h3>
-					<h2>{totalWorkouts ? totalWorkouts : "Loading"}</h2>
+					<h2>{totalWorkouts ? totalWorkouts : "0"}</h2>
 				</StatsContainer>
 				<StatsContainer2>
 					<h3>Total Exercises</h3>
-					<h2>{totalExercises ? totalExercises: "Loading"}</h2>
+					<h2>{totalExercises ? totalExercises : "0"}</h2>
 				</StatsContainer2>
 				<StatsContainer3>
 					<h3>Body Region Worked out the most</h3>
