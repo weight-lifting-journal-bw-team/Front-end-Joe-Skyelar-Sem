@@ -40,6 +40,14 @@ class QuickStats extends Component {
 
 		const totalWorkouts = countsArray.reduce((sum, element) => {return sum + element}, 0)
 
+		const exercisesCountArray = statsWorkouts.map(workout => {
+			return workout.exercises.length
+		})
+		  
+		const totalExercises = exercisesCountArray.reduce((sum, element) => {
+		return sum + element
+		}, 0)
+
 		return (
 			<Fragment>
 				<StatsContainer>
@@ -48,7 +56,7 @@ class QuickStats extends Component {
 				</StatsContainer>
 				<StatsContainer2>
 					<h3>Total Exercises</h3>
-					<h2>45</h2>
+					<h2>{totalExercises ? totalExercises: "Loading"}</h2>
 				</StatsContainer2>
 				<StatsContainer3>
 					<h3>Body Region Worked out the most</h3>
