@@ -99,7 +99,7 @@ class InlineAddExercise extends Component {
 
 const mapStateToProps = ({ authReducer }) => {
 	return {
-		userId: authReducer.currentUser
+		userId: authReducer.currentUserId
 	};
 };
 
