@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+
 import {
 	StatsContainer,
 	StatsContainer2,
@@ -11,24 +13,31 @@ class QuickStats extends Component {
 		return (
 			<Fragment>
 				<StatsContainer>
-					<h3>Total workouts in the last 7 days</h3>
-					<h2>18</h2>
+					<h3>Total workouts</h3>
+					<h2>20</h2>
 				</StatsContainer>
 				<StatsContainer2>
-					<h3>Total workout time in the last 7 days </h3>
-					<h2>16</h2>
+					<h3>Total Exercises</h3>
+					<h2>45</h2>
 				</StatsContainer2>
 				<StatsContainer3>
-					<h3>Total workout time in the last 7 days </h3>
-					<h2>16</h2>
+					<h3>Body Region Worked out the most</h3>
+					<h2>Chest</h2>
 				</StatsContainer3>
 				<StatsContainer4>
-					<h3>Total days worked out in the last 7 days</h3>
-					<h2>5</h2>
+					<h3>Max Weight Lifted</h3>
+					<h2>500 lbs</h2>
 				</StatsContainer4>
 			</Fragment>
 		);
 	}
 }
 
-export default QuickStats;
+const mapStateToProps = ({ workoutReducer }) => ({
+	workouts: workoutReducer.workouts
+});
+
+export default connect(
+	mapStateToProps,
+	{}
+)(QuickStats);

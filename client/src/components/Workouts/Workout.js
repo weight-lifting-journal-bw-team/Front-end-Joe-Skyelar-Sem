@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteWorkout, updateWorkout } from "../../actions/workoutActions";
 import { fetchExercises } from "../../actions/exerciseActions";
@@ -6,6 +6,7 @@ import { fetchExercises } from "../../actions/exerciseActions";
 import {
 	WorkoutWrapper,
 	WorkoutContainer,
+	WorkoutContentWrapper,
 	DropDownWrapper,
 	WorkoutRegionHeader,
 	EditButton,
@@ -80,15 +81,17 @@ class Workout extends Component {
 					<WorkoutContainer>
 						<div>
 							<WorkoutRegionHeader onClick={this.toggleWorkout}>
-								<p>{this.state.workout.region}</p>
-								<FontAwesomeIcon
-									icon={
-										!this.state.workoutToggle
-											? faChevronUp
-											: faChevronDown
-									}
-									style={{ color: "#000" }}
-								/>
+								<WorkoutContentWrapper>
+									<p>{this.state.workout.region}</p>
+									<FontAwesomeIcon
+										icon={
+											!this.state.workoutToggle
+												? faChevronUp
+												: faChevronDown
+										}
+										style={{ color: "#000" }}
+									/>
+								</WorkoutContentWrapper>
 							</WorkoutRegionHeader>
 						</div>
 						<div>
