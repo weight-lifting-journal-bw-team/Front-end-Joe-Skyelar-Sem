@@ -134,6 +134,7 @@ class Workout extends Component {
 						<ExerciseList
 							exercises={this.props.exercises}
 							workoutId={this.props.id}
+							refreshWorkouts={this.props.refreshWorkouts}
 						/>
 					</DropDownWrapper>
 				)}

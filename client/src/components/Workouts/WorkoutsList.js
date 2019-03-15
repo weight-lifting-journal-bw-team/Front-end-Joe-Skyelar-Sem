@@ -9,7 +9,7 @@ class WorkoutsList extends Component {
 		return (
 			<WorkoutsListWrapper>
 				{this.props.workouts.map(workout => (
-					<Workout key={workout.id} {...workout} />
+					<Workout key={workout.id} {...workout} refreshWorkouts={this.props.refreshWorkouts}/>
 				))}
 			</WorkoutsListWrapper>
 		);

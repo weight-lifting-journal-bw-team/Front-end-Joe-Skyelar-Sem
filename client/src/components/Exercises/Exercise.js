@@ -28,6 +28,7 @@ class Exercise extends Component {
 	deleteExercise = e => {
 		e.preventDefault();
 		this.props.deleteExercise(this.props.id);
+		this.props.refreshWorkouts()
 	};
 
 	updateExercise = e => {

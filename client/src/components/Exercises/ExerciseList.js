@@ -21,7 +21,7 @@ class ExerciseList extends Component {
 					<TableHeaderWrapper>Weight:</TableHeaderWrapper>
 				</TableRowWrapper>
 				{this.props.exercises.map(exercise => (
-					<Exercise key={exercise.id} {...exercise} />
+					<Exercise key={exercise.id} {...exercise} refreshWorkouts={this.props.refreshWorkouts}/>
 				))}
 				<InlineAddExercise workoutId={this.props.workoutId} />
 			</TableWrapper>
