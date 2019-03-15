@@ -88,6 +88,7 @@ class Exercise extends Component {
 					</Fragment>
 				) : (
 					<Fragment>
+						<TableDataWrapper>
 						<InlineInput
 							type="text"
 							name="name"
@@ -95,6 +96,8 @@ class Exercise extends Component {
 							placeholder="name"
 							onChange={this.handleChanges}
 						/>
+						</TableDataWrapper>
+						<TableDataWrapper>
 						<InlineInput
 							type="text"
 							name="sets"
@@ -102,6 +105,8 @@ class Exercise extends Component {
 							placeholder="sets"
 							onChange={this.handleChanges}
 						/>
+						</TableDataWrapper>
+						<TableDataWrapper>
 						<InlineInput
 							type="text"
 							name="reps"
@@ -109,6 +114,8 @@ class Exercise extends Component {
 							placeholder="reps"
 							onChange={this.handleChanges}
 						/>
+						</TableDataWrapper>
+						<TableDataWrapper>
 						<InlineInput
 							type="text"
 							name="weight"
@@ -116,12 +123,16 @@ class Exercise extends Component {
 							placeholder="max weight"
 							onChange={this.handleChanges}
 						/>
+						</TableDataWrapper>
+						<TableDataWrapper></TableDataWrapper>
+						<TableDataWrapper>
 						<SolidRoundBtn onClick={this.handleEdit}>
 							Cancel
 						</SolidRoundBtn>
 						<RoundBtn onClick={this.updateExercise}>
 							Update exercise
 						</RoundBtn>
+						</TableDataWrapper>
 					</Fragment>
 				)}
 			</TableRowWrapper>
