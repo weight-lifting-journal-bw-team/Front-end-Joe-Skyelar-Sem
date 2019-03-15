@@ -15,12 +15,12 @@ class ProgressChart extends Component {
 		// filteredRegionsArray is a unique set of those regions that removes duplicates
 		// this becomes the labels array for the doughnut chart
 		let filteredRegionsArray = regionsArray.filter((region, i) => {
-			return regionsArray.indexOf(region) == i;
+			return regionsArray.indexOf(region) === i;
 		});
 
 		// count in Array function will take an array and a region and then return how many times that region shows up in the array
 		function countInArray(array, region) {
-			return array.filter(el => el == region).length;
+			return array.filter(el => el === region).length;
 		}
 
 		// countsArray takes each unique region and then counts how many times that region showed up in our non-duped regionsArray
@@ -38,6 +38,8 @@ class ProgressChart extends Component {
 					backgroundColor: [
 						"#FF6384",
 						"#8133ff",
+						"#00ff87",
+						"#00ffc3",
 						"#5EB5EF",
 						"#6BC8C9",
 						"#ff9533",
@@ -48,14 +50,9 @@ class ProgressChart extends Component {
 		};
 
 		const doughnutOptions = {
-			legend: {
-				labels: {
-					fontColor: "black"
-				}
-			},
 			title: {
 				display: true,
-				text: "Body Regions Worked out this week"
+				text: "Body Regions Worked out"
 			}
 		};
 
