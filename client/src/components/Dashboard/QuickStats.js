@@ -10,6 +10,34 @@ import {
 
 class QuickStats extends Component {
 	render() {
+
+		const statsWorkouts = this.props.workouts
+
+		const regionsArray = statsWorkouts.map(workout => {
+			return workout.region
+		})
+		
+		let filteredRegionsArray = regionsArray.filter((region, i) => {
+		return regionsArray.indexOf(region) === i;
+		})
+		
+		function countInArray(array, region) {
+			return array.filter(item => item === region).length
+		}
+		
+		let countsArray = filteredRegionsArray.map(region => {
+			return countInArray(regionsArray, region)
+		})
+		
+		const groupedArray = filteredRegionsArray.map((region, i, array) => ({
+			name: region,
+			count: countInArray(regionsArray, region)
+		  }))
+
+		const sortedGroupedArray = groupedArray.sort((a,b) => {
+			return b.count - a.count
+		})  
+
 		return (
 			<Fragment>
 				<StatsContainer>
@@ -22,7 +50,7 @@ class QuickStats extends Component {
 				</StatsContainer2>
 				<StatsContainer3>
 					<h3>Body Region Worked out the most</h3>
-					<h2>Chest</h2>
+					<h2>{sortedGroupedArray.length > 0 ? sortedGroupedArray[0].name : "Loading"}</h2>
 				</StatsContainer3>
 				<StatsContainer4>
 					<h3>Max Weight Lifted</h3>
