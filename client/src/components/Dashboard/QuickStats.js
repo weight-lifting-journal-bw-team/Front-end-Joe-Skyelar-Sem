@@ -38,11 +38,13 @@ class QuickStats extends Component {
 			return b.count - a.count
 		})  
 
+		const totalWorkouts = countsArray.reduce((sum, element) => {return sum + element}, 0)
+
 		return (
 			<Fragment>
 				<StatsContainer>
 					<h3>Total workouts</h3>
-					<h2>20</h2>
+					<h2>{totalWorkouts ? totalWorkouts : "Loading"}</h2>
 				</StatsContainer>
 				<StatsContainer2>
 					<h3>Total Exercises</h3>
