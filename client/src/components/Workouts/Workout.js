@@ -52,6 +52,7 @@ class Workout extends Component {
 		this.setState({
 			isEditing: !this.state.isEditing
 		});
+		this.props.refreshWorkouts()
 	};
 
 	deleteWorkout = e => {
@@ -134,6 +135,7 @@ class Workout extends Component {
 						<ExerciseList
 							exercises={this.props.exercises}
 							workoutId={this.props.id}
+							refreshWorkouts={this.props.refreshWorkouts}
 						/>
 					</DropDownWrapper>
 				)}

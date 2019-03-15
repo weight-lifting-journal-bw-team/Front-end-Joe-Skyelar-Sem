@@ -21,6 +21,14 @@ import {
 import QuickStats from "./QuickStats";
 
 class Home extends Component {
+	state = {
+		refresh: false
+	}
+
+	refreshWorkouts = () => {
+		this.setState({refresh: !this.state.refresh})
+	}
+
 	componentDidUpdate = () => {
 		this.props.fetchWorkouts(this.props.userId);
 	};
@@ -40,7 +48,7 @@ class Home extends Component {
 						</div>
 						<AddWorkout />
 						<div className="right">
-							<WorkoutsList />
+							<WorkoutsList refreshWorkouts={this.refreshWorkouts}/>
 						</div>
 					</HomeBodyWrapper>
 				</DashboardContainer>
