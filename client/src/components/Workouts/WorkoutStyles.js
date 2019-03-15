@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const WorkoutsListWrapper = styled.div`
-	width: 800px;
+	width: 850px;
 	height: 500px;
 	border-radius: 10px;
 	display: flex;
@@ -11,8 +11,16 @@ export const WorkoutsListWrapper = styled.div`
 export const WorkoutWrapper = styled.div`
 	width: 100%;
 	border-radius: 10px;
-	margin: 5px 0;
+	margin-bottom: 15px;
 	background: #fff;
+	box-shadow: 0px 0px 39px -20px rgba(0, 0, 0, 0.75);
+`;
+
+export const WorkoutContentWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 70px;
 `;
 
 export const WorkoutContainer = styled.div`
@@ -33,7 +41,6 @@ export const WorkoutRegionHeader = styled.div`
 	p {
 		font-size: 1.6rem;
 		padding: 0 5px;
-		padding-right: 15px;
 	}
 `;
 

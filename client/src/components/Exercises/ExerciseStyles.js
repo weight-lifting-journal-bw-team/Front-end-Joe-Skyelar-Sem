@@ -6,7 +6,8 @@ export const TableWrapper = styled.table`
 `;
 
 export const TableRowWrapper = styled.tr`
-	&:nth-child(even) {
+	&:nth-child(even):not(:last-child) {
+		background-color: #f5f5f5;
 	}
 `;
 export const TableHeaderWrapper = styled.th`
