@@ -1,9 +1,16 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+
 import { deleteExercise, updateExercise } from "../../actions/exerciseActions";
 
 import { TableRowWrapper, TableDataWrapper } from "./ExerciseStyles";
+import { EditButton, DeleteButton } from "../Workouts/WorkoutStyles";
+
+library.add([faTrashAlt, faPencilAlt]);
 
 class Exercise extends Component {
 	state = {
@@ -62,10 +69,18 @@ class Exercise extends Component {
 						</TableDataWrapper>
 						<TableDataWrapper />
 						<TableDataWrapper>
-							<button onClick={this.handleEdit}>Edit</button>
-							<button onClick={this.deleteExercise}>
-								Delete
-							</button>
+							<EditButton onClick={this.handleEdit}>
+								<FontAwesomeIcon
+									icon={faPencilAlt}
+									style={{ color: "#fff" }}
+								/>
+							</EditButton>
+							<DeleteButton onClick={this.deleteExercise}>
+								<FontAwesomeIcon
+									icon={faTrashAlt}
+									style={{ color: "#fff" }}
+								/>
+							</DeleteButton>
 						</TableDataWrapper>
 					</Fragment>
 				) : (
