@@ -8,7 +8,10 @@ import {
 	LOGIN_USER_START,
 	LOGIN_USER_SUCCESS,
 	LOGIN_USER_FAILURE,
-	PERSIST_USER
+	PERSIST_USER,
+	GET_CURRENT_USER_START,
+	GET_CURRENT_USER_SUCCESS,
+	GET_CURRENT_USER_FAILURE
 } from "./index";
 
 export const persistUser = id => dispatch => {
@@ -16,6 +19,32 @@ export const persistUser = id => dispatch => {
 		type: PERSIST_USER,
 		payload: id
 	});
+};
+
+export const fetchCurrentUser = id => dispatch => {
+	dispatch({
+		type: GET_CURRENT_USER_START
+	});
+
+	return axios
+		.get(
+			`https://weight-lifting-journal.herokuapp.com/api/restricted/users/${id}`,
+			{
+				headers: { authorization: localStorage.getItem("token") }
+			}
+		)
+		.then(res => {
+			dispatch({
+				type: GET_CURRENT_USER_SUCCESS,
+				payload: res.data
+			});
+		})
+		.catch(err => {
+			dispatch({
+				type: GET_CURRENT_USER_FAILURE,
+				payload: err.response.data.message
+			});
+		});
 };
 
 export const registerUser = creds => dispatch => {
