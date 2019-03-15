@@ -35,7 +35,14 @@ class ProgressChart extends Component {
 				{
 					data: countsArray,
 					label: "Body Region workedout",
-					backgroundColor: ["#FF6384", "#6BC8C9", "#FFD87B"]
+					backgroundColor: [
+						"#FF6384",
+						"#8133ff",
+						"#5EB5EF",
+						"#6BC8C9",
+						"#ff9533",
+						"#FFD87B"
+					]
 				}
 			]
 		};

@@ -9,6 +9,8 @@ import { deleteExercise, updateExercise } from "../../actions/exerciseActions";
 
 import { TableRowWrapper, TableDataWrapper } from "./ExerciseStyles";
 import { EditButton, DeleteButton } from "../Workouts/WorkoutStyles";
+import { InlineInput } from "./ExerciseStyles";
+import { SolidRoundBtn, RoundBtn } from "../styles/FormStyles";
 
 library.add([faTrashAlt, faPencilAlt]);
 
@@ -85,38 +87,40 @@ class Exercise extends Component {
 					</Fragment>
 				) : (
 					<Fragment>
-						<input
+						<InlineInput
 							type="text"
 							name="name"
 							value={this.state.exercise.name}
 							placeholder="name"
 							onChange={this.handleChanges}
 						/>
-						<input
+						<InlineInput
 							type="text"
 							name="sets"
 							value={this.state.exercise.sets}
 							placeholder="sets"
 							onChange={this.handleChanges}
 						/>
-						<input
+						<InlineInput
 							type="text"
 							name="reps"
 							value={this.state.exercise.reps}
 							placeholder="reps"
 							onChange={this.handleChanges}
 						/>
-						<input
+						<InlineInput
 							type="text"
 							name="weight"
 							value={this.state.exercise.weight}
 							placeholder="max weight"
 							onChange={this.handleChanges}
 						/>
-						<button onClick={this.updateExercise}>
+						<SolidRoundBtn onClick={this.handleEdit}>
+							Cancel
+						</SolidRoundBtn>
+						<RoundBtn onClick={this.updateExercise}>
 							Update exercise
-						</button>
-						<button onClick={this.handleEdit}>Cancel</button>
+						</RoundBtn>
 					</Fragment>
 				)}
 			</TableRowWrapper>
