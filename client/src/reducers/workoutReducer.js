@@ -183,6 +183,13 @@ export default (state = initialState, action) => {
 				workouts: sorted
 			};
 
+		case ADD_EXERCISE_FAILURE:
+			return {
+				...state,
+				fetching: false,
+				errors: action.payload
+			};
+
 		default:
 			return state;
 	}
