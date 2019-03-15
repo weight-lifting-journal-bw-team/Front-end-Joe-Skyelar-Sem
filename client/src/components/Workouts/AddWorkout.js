@@ -112,7 +112,7 @@ class AddWorkout extends Component {
 const mapStateToProps = ({ workoutReducer, authReducer }) => ({
 	toggleModalWorkoutValue: workoutReducer.toggleWorkoutModal,
 	toggleAddExerciseValue: workoutReducer.addExercise,
-	userId: authReducer.currentUser
+	userId: authReducer.currentUserId
 });
 export default connect(
 	mapStateToProps,

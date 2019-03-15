@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import ExerciseList from "./FormExerciseList";
-
 import {
 	FormInput,
 	FormButton,
@@ -97,11 +95,6 @@ class AddExercise extends Component {
 						/>
 					</FormInputWrapper>
 					<FormButton type="submit">Add Exercise</FormButton>
-					{/*
-                On submit exercise will be added to journal by id
-                and added to a list of exercises
-                current component sate will reset allowing user to add in a new exercise
-            */}
 				</form>
 			</FormWrapper>
 		);

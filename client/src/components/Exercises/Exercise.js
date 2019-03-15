@@ -1,9 +1,18 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+
 import { deleteExercise, updateExercise } from "../../actions/exerciseActions";
 
 import { TableRowWrapper, TableDataWrapper } from "./ExerciseStyles";
+import { EditButton, DeleteButton } from "../Workouts/WorkoutStyles";
+import { InlineInput } from "./ExerciseStyles";
+import { SolidRoundBtn, RoundBtn } from "../styles/FormStyles";
+
+library.add([faTrashAlt, faPencilAlt]);
 
 class Exercise extends Component {
 	state = {
@@ -62,46 +71,56 @@ class Exercise extends Component {
 						</TableDataWrapper>
 						<TableDataWrapper />
 						<TableDataWrapper>
-							<button onClick={this.handleEdit}>Edit</button>
-							<button onClick={this.deleteExercise}>
-								Delete
-							</button>
+							<EditButton onClick={this.handleEdit}>
+								<FontAwesomeIcon
+									icon={faPencilAlt}
+									style={{ color: "#fff" }}
+								/>
+							</EditButton>
+							<DeleteButton onClick={this.deleteExercise}>
+								<FontAwesomeIcon
+									icon={faTrashAlt}
+									style={{ color: "#fff" }}
+								/>
+							</DeleteButton>
 						</TableDataWrapper>
 					</Fragment>
 				) : (
 					<Fragment>
-						<input
+						<InlineInput
 							type="text"
 							name="name"
 							value={this.state.exercise.name}
 							placeholder="name"
 							onChange={this.handleChanges}
 						/>
-						<input
+						<InlineInput
 							type="text"
 							name="sets"
 							value={this.state.exercise.sets}
 							placeholder="sets"
 							onChange={this.handleChanges}
 						/>
-						<input
+						<InlineInput
 							type="text"
 							name="reps"
 							value={this.state.exercise.reps}
 							placeholder="reps"
 							onChange={this.handleChanges}
 						/>
-						<input
+						<InlineInput
 							type="text"
 							name="weight"
 							value={this.state.exercise.weight}
 							placeholder="max weight"
 							onChange={this.handleChanges}
 						/>
-						<button onClick={this.updateExercise}>
+						<SolidRoundBtn onClick={this.handleEdit}>
+							Cancel
+						</SolidRoundBtn>
+						<RoundBtn onClick={this.updateExercise}>
 							Update exercise
-						</button>
-						<button onClick={this.handleEdit}>Cancel</button>
+						</RoundBtn>
 					</Fragment>
 				)}
 			</TableRowWrapper>
