@@ -52,6 +52,7 @@ class Workout extends Component {
 		this.setState({
 			isEditing: !this.state.isEditing
 		});
+		this.props.refreshWorkouts()
 	};
 
 	deleteWorkout = e => {
