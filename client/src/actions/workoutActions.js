@@ -1,5 +1,4 @@
 import axios from "axios";
-import moment from "moment";
 
 import {
 	TOGGLE_WORKOUT_MODAL,

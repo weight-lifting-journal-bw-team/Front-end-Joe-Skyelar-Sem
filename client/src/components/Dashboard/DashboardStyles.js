@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const DashboardContainer = styled.div`
+	width: 99%;
+	display: block;
+	margin: 0 auto;
+`;
+
 export const HomeBodyWrapper = styled.div`
 	display: flex;
 	justify-content: space-evenly;
@@ -129,7 +135,8 @@ export const StatsContainer4 = styled.div`
 `;
 
 export const ChartContainer = styled.div`
-	border: 1px solid black;
-	height: 500px;
-	width: 800px;
+	width: 798px;
+	padding: 40px 0 50px;
+	background: #fff;
+	border-radius: 10px;
 `;
