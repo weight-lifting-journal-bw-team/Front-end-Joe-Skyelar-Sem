@@ -4,8 +4,6 @@ import Workout from "./Workout";
 
 import { WorkoutsListWrapper } from "./WorkoutStyles";
 
-import { fetchWorkouts } from "../../actions/workoutActions";
-
 class WorkoutsList extends Component {
 	render() {
 		return (
