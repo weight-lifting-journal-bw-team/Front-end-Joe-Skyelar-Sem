@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { Router, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import history from "./helpers/history";
 import WorkoutModal from "react-modal";
 
