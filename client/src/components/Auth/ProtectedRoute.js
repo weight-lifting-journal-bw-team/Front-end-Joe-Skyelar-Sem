@@ -16,8 +16,6 @@ class PrivateRoute extends Component {
 				return localStorage.removeItem("token");
 			}
 			return this.props.persistUser(decoded.subject);
-		} else {
-			this.props.history.push('/login')
 		}
 	}
 
